@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <T_MODEL_STATE ID="1" STATE="BEGIN" GRAPH="Test"/>
+
+    <T_PROCESS_STATE ID="1" DOMAINOBJECT_NAME="Test" DOMAINOBJECT_ID="3" STATE_ID="1"/>
+</dataset>
