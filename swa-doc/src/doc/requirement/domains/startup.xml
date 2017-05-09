@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0">
+
+    <title>Login und LandingPage</title>
+
+    <para>
+        Das Einloggen und anzeigen der ersten Maske.
+    </para>
+
+    <variablelist role="requirements">
+        <varlistentry>
+            <term>REQ-1.1</term>
+            <listitem>
+                <para>Durch Eingabe und Bestätigung der Start-URL in einem Browser wird die LandingPage angezeigt.</para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.2</term>
+            <listitem>Jede Maske hat am unteren Bildrand eine Statuszeile.</listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.3</term>
+            <listitem>Die Statuszeile zeigt ein Maskenkürzel und den Maskenname.</listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.4</term>
+            <listitem>Die Statuszeile zeigt die Version und die Buildnumber der Anwendung.</listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.5</term>
+            <listitem>Die Web-Anwendung muss folgende Browser unterstützen
+                Firefox (Version 45 bis aktuelle Version 46),
+                Chrome (aktuelle Version 58) und
+                IE (Version 10 bis aktuelle Version 11).</listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.6</term>
+            <listitem>Jede Maske zeigt oben links ein Logo der Webanwendung.</listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.7</term>
+            <listitem>Jede Maske zeigt oben rechts neben dem Logo eine Menue-Leiste.</listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>REQ-1.8</term>
+            <listitem>Beim Klick auf das Logo gelangt der User zurück auf die LandingPage.</listitem>
+        </varlistentry>
+    </variablelist>
+</section>

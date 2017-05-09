@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glossary xml:id="glossary"
+         version="5.0"
+         xml:lang="en"
+         xmlns="http://docbook.org/ns/docbook"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xsi:schemaLocation="
+           http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd
+           http://www.w3.org/1999/xlink http://www.docbook.org/xml/5.0/xsd/xlink.xsd
+        ">
+    <title>Glossar</title>
+    <glossentry id="gloss:landingpage">
+        <glossterm>LandingPage</glossterm>
+        <glossdef>
+            <para>Die unmittelbar nach dem Einloggen sichtbare Seite. Auch bei
+                einem System-Fehler, bei dem mit einem normalen Arbeiten nicht mehr
+                fortgesetzt werden kann, wird auf die LandingPage gesprungen. </para>
+        </glossdef>
+    </glossentry>
+    <glossentry id="gloss:maskenkürzel">
+        <glossterm>Maskenkürzel</glossterm>
+        <glossdef>
+            <para>Jede Maske hat einen Titel. Aus diesem Titel wird ein Kürzel mit mindestens
+                3 und höchstens 5 Buchstaben gebildet. Der letzte Buchstabe ann auch eine
+                Zahl sein. Dieses Kürzel ist in der Web-Anwendung eindeutig. </para>
+        </glossdef>
+    </glossentry>
+    <glossentry id="gloss:buildnumber">
+        <glossterm>Buildnumber</glossterm>
+        <glossdef>
+            <para>Die Buildnumber ist eine eindeutige fortlaufende Nummer, die beim
+                Compilieren und Zusammenbau der Web-Anwendung vergeben wird. </para>
+        </glossdef>
+    </glossentry>
+</glossary>
