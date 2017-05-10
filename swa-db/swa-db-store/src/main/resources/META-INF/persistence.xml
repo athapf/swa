@@ -12,6 +12,7 @@
         <class>de.thaso.swa.db.store.process.ModelEdgeEntity</class>
         <class>de.thaso.swa.db.store.process.ModelActionEntity</class>
         <class>de.thaso.swa.db.store.process.ModelGuardEntity</class>
+        <class>de.thaso.swa.db.store.order.OrderEntity</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
 			<property name="openjpa.RuntimeUnenhancedClasses" value="supported" />
