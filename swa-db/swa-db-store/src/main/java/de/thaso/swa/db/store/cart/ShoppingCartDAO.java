@@ -21,6 +21,9 @@ public class ShoppingCartDAO {
     private final static Logger LOG = LoggerFactory.getLogger(ShoppingCartDAO.class);
 
     @Inject
+    private GreetingsMessage greetingsMessage;
+
+    @Inject
     private EntityManager entityManager;
 
     public ShoppingCartEntity storeShoppingCart(final ShoppingCartEntity shoppingCartEntity) {
@@ -49,6 +52,8 @@ public class ShoppingCartDAO {
 
     public List<ShoppingCartEntity> findByName(final String name) {
         LOG.info("findByName( {} )", name);
+
+        System.out.println(greetingsMessage.createGreeting(name));
 
         final TypedQuery<ShoppingCartEntity> query
                 = entityManager.createNamedQuery(ShoppingCartEntity.FIND_BY_NAMES, ShoppingCartEntity.class);
