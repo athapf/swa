@@ -12,8 +12,8 @@
         <root.dir>${project.basedir}</root.dir>
         <org.mapstruct.version>1.0.0.Final</org.mapstruct.version>
 
-        <dbunit.version>2.5.2</dbunit.version>
         <flyway.version>4.0.3</flyway.version>
+        <dbunit.version>2.5.2</dbunit.version>
 
         <h2.version>1.4.192</h2.version>
         <postgres.version>9.4.1210.jre6</postgres.version>
