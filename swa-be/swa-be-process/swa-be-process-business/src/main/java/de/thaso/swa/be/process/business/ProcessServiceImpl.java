@@ -4,7 +4,7 @@ import de.thaso.swa.be.common.service.ContextData;
 import de.thaso.swa.be.common.service.RecordBase;
 import de.thaso.swa.be.common.service.RecordObject;
 import de.thaso.swa.be.process.business.model.ProcessModel;
-import de.thaso.swa.be.process.service.Action;
+import de.thaso.swa.be.process.model.Action;
 import de.thaso.swa.be.process.service.ProcessService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

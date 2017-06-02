@@ -1,4 +1,4 @@
-package de.thaso.swa.be.process.service;
+package de.thaso.swa.be.process.model;
 
 /**
  * ActionData

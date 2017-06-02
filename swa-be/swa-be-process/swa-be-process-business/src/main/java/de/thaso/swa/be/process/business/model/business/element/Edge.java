@@ -1,6 +1,6 @@
 package de.thaso.swa.be.process.business.model.business.element;
 
-import de.thaso.swa.be.process.service.Action;
+import de.thaso.swa.be.process.model.Action;
 
 import java.util.List;
 

@@ -1,11 +1,6 @@
 package de.thaso.swa.be.process.service;
 
 import de.thaso.swa.be.common.service.RecordBase;
-import de.thaso.swa.be.common.service.RecordVersionObject;
-import de.thaso.swa.be.process.service.model.ModelEnum;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * ProcessData
@@ -20,7 +15,7 @@ public class ProcessData extends RecordBase {
     private String model;
     private Long objectId;
     private ProcessData parent;
-    private State state;
+    private String state;
 
     public String getModel() {
         return model;
@@ -46,11 +41,11 @@ public class ProcessData extends RecordBase {
         this.parent = parent;
     }
 
-    public State getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(final State state) {
+    public void setState(final String state) {
         this.state = state;
     }
 }

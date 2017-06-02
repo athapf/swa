@@ -2,7 +2,7 @@ package de.thaso.swa.be.process.internal;
 
 import de.thaso.swa.be.common.service.RecordBase;
 import de.thaso.swa.be.common.service.RecordObject;
-import de.thaso.swa.be.process.service.model.ModelEnum;
+import de.thaso.swa.be.process.model.ProcessModel;
 
 /**
  * ProcessInfoData
@@ -14,26 +14,26 @@ public class ProcessInfoData extends RecordBase {
 
     private static final long serialVersionUID = -7937415226763826790L;
 
-    private ModelEnum model;
+    private ProcessModel model;
     private String instanzeName;
     
-    public ProcessInfoData(final ModelEnum model, final RecordBase recordBase) {
+    public ProcessInfoData(final ProcessModel model, final RecordBase recordBase) {
         this.model = model;
         this.instanzeName = recordBase.getClass().getSimpleName();
         this.setId(recordBase.getId());
     }
 
-    public ProcessInfoData(final ModelEnum model, final RecordObject recordObject) {
+    public ProcessInfoData(final ProcessModel model, final RecordObject recordObject) {
         this.model = model;
         this.instanzeName = recordObject.getInstanceName();
         this.setId(recordObject.getId());
     }
 
-    public ModelEnum getModel() {
+    public ProcessModel getModel() {
         return model;
     }
 
-    public void setModel(final ModelEnum model) {
+    public void setModel(final ProcessModel model) {
         this.model = model;
     }
 

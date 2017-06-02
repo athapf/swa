@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>swa.be.process</groupId>
+        <artifactId>swa-be-process</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+
+    <groupId>swa.be.process</groupId>
+    <artifactId>swa-be-process-model</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>swa-be-process-model</name>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>set-system-properties</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>org.apache.xerces.xni.parser.XMLParserConfiguration</name>
+                                    <value>org.apache.xerces.parsers.XIncludeParserConfiguration</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <transformationSets>
+                        <transformationSet>
+                            <dir>src/main/resources/model</dir>
+                            <includes>model.xml</includes>
+                            <stylesheet>src/xslt/copy.xsl</stylesheet>
+                            <outputDir>${project.build.directory}/model</outputDir>
+                        </transformationSet>
+                        <transformationSet>
+                            <outputDir>${project.build.directory}/generated-sources/model</outputDir>
+                            <dir>src/main/resources/model</dir>
+                            <excludes>**/*.xml</excludes>
+                            <stylesheet>src/xslt/generateStates.xsl</stylesheet>
+                            <fileMappers>
+                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                                    <pattern>^(.*)\.bpmn$</pattern>
+                                    <replacement>$1State.java</replacement>
+                                </fileMapper>
+                            </fileMappers>
+                        </transformationSet>
+                        <transformationSet>
+                            <outputDir>${project.build.directory}/generated-sources/model/</outputDir>
+                            <dir>src/main/resources/model</dir>
+                            <excludes>**/*.xml</excludes>
+                            <stylesheet>src/xslt/generateActions.xsl</stylesheet>
+                            <fileMappers>
+                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                                    <pattern>^(.*)\.bpmn$</pattern>
+                                    <replacement>$1Action.java</replacement>
+                                </fileMapper>
+                            </fileMappers>
+                        </transformationSet>
+                        <transformationSet>
+                            <outputDir>${project.build.directory}/generated-sources/model/</outputDir>
+                            <dir>target/model</dir>
+                            <stylesheet>src/xslt/generateProcessModel.xsl</stylesheet>
+                            <fileMappers>
+                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
+                                    <pattern>^model.xml$</pattern>
+                                    <replacement>ProcessModel.java</replacement>
+                                </fileMapper>
+                            </fileMappers>
+                        </transformationSet>
+                    </transformationSets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

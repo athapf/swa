@@ -25,6 +25,7 @@
         </dependency>
     </dependencies>
     <modules>
+        <module>swa-be-process-model</module>
         <module>swa-be-process-business</module>
         <module>swa-be-process-service</module>
         <module>swa-be-process-internal</module>

@@ -20,48 +20,11 @@
     <name>swa-be-process-service</name>
 
     <dependencies>
+        <dependency>
+            <groupId>swa.be.process</groupId>
+            <artifactId>swa-be-process-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>xml-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>transform</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <transformationSets>
-                        <transformationSet>
-                            <outputDir>${project.build.directory}/generated-sources/model</outputDir>
-                            <dir>src/main/resources/model</dir>
-                            <stylesheet>src/xslt/generateStates.xsl</stylesheet>
-                            <fileMappers>
-                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
-                                    <pattern>^(.*)\.bpmn$</pattern>
-                                    <replacement>$1State.java</replacement>
-                                </fileMapper>
-                            </fileMappers>
-                        </transformationSet>
-                        <transformationSet>
-                            <outputDir>${project.build.directory}/generated-sources/model/</outputDir>
-                            <dir>src/main/resources/model</dir>
-                            <stylesheet>src/xslt/generateActions.xsl</stylesheet>
-                            <fileMappers>
-                                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
-                                    <pattern>^(.*)\.bpmn$</pattern>
-                                    <replacement>$1Action.java</replacement>
-                                </fileMapper>
-                            </fileMappers>
-                        </transformationSet>
-                    </transformationSets>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

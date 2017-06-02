@@ -30,9 +30,11 @@
     <xsl:template match="/">
         <xsl:variable name="class" select="./descendant::bpmn:process/@name"/>
 
-        <xsl:text>package de.thaso.swa.be.process.service.model;&#xA;</xsl:text>
+        <xsl:text>package de.thaso.swa.be.process.model;&#xA;</xsl:text>
+<!--
         <xsl:text>&#xA;</xsl:text>
-        <xsl:text>import de.thaso.swa.be.process.service.Action;&#xA;</xsl:text>
+        <xsl:text>import de.thaso.swa.be.process.model.Action;&#xA;</xsl:text>
+-->
         <xsl:text>&#xA;</xsl:text>
         <xsl:text>/**&#xA;</xsl:text>
         <xsl:text> * </xsl:text>

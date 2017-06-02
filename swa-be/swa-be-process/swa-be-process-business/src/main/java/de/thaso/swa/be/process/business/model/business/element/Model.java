@@ -1,7 +1,7 @@
 package de.thaso.swa.be.process.business.model.business.element;
 
-import de.thaso.swa.be.process.service.Action;
-import de.thaso.swa.be.process.service.State;
+import de.thaso.swa.be.process.model.Action;
+import de.thaso.swa.be.process.model.State;
 
 import java.util.List;
 import java.util.Map;
