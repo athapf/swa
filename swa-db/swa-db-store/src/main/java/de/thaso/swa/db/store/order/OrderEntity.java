@@ -49,12 +49,16 @@ public class OrderEntity extends EntityBase {
     private Date completed;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CONFIRMED")
-    private Date confirmed;
-
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "APPROVED")
     private Date approved;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "PROCESSED")
+    private Date processed;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "FINISHED")
+    private Date finished;
 
     @Override
     public Long getId() {
@@ -81,19 +85,27 @@ public class OrderEntity extends EntityBase {
         this.completed = completed;
     }
 
-    public Date getConfirmed() {
-        return confirmed;
-    }
-
-    public void setConfirmed(final Date confirmed) {
-        this.confirmed = confirmed;
-    }
-
     public Date getApproved() {
         return approved;
     }
 
     public void setApproved(final Date approved) {
         this.approved = approved;
+    }
+
+    public Date getProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(Date processed) {
+        this.processed = processed;
+    }
+
+    public Date getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Date finished) {
+        this.finished = finished;
     }
 }
