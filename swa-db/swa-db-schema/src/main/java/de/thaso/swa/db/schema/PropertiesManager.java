@@ -37,6 +37,7 @@ public class PropertiesManager {
     private PropertiesManager() {}
 
     private Properties readProperties(final String propertiesFileName) {
+        logBuildEnvironment();
         final Properties properties = new Properties();
         properties.putAll(loadPropertiesFromResource(StringUtils.join(JAVA_FILE_SEPARATOR, propertiesFileName)));
 
@@ -55,6 +56,12 @@ public class PropertiesManager {
         }
 
         return properties;
+    }
+
+    private void logBuildEnvironment() {
+        final String target_env = System.getenv("DEVELOP_MODE");
+        final String target_property = System.getProperty("develop.mode");
+        LOG.info("==> develop mode: {} / {}", target_env, target_property);
     }
 
     private Properties loadPropertiesFromFile(final String fileName) {
