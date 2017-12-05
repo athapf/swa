@@ -2,7 +2,6 @@ package de.thaso.swa.be.process.internal;
 
 import de.thaso.swa.be.common.service.RecordBase;
 import de.thaso.swa.be.common.service.RecordObject;
-import de.thaso.swa.be.process.model.ProcessModel;
 
 /**
  * ProcessInfoData
@@ -14,7 +13,7 @@ public class ProcessInfoData extends RecordBase {
 
     private static final long serialVersionUID = -7937415226763826790L;
 
-    private ProcessModel model;
+    private Model model;
     private String instanzeName;
     
     public ProcessInfoData(final ProcessModel model, final RecordBase recordBase) {

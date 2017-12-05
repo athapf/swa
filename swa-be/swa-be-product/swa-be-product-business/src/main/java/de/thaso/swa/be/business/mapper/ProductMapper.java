@@ -1,7 +1,7 @@
 package de.thaso.swa.be.business.mapper;
 
 import de.thaso.swa.be.product.service.ProductData;
-import de.thaso.mpt.db.store.NickNameEntity;
+import de.thaso.swa.db.store.product.ProductEntity;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
 
-    ProductData nickNameToDO(NickNameEntity nickNameEntity);
+    ProductData productToDO(ProductEntity productEntity);
 
-    NickNameEntity nickNameToEntity(ProductData productData);
+    ProductEntity productToEntity(ProductData productData);
 
-    List<ProductData> nickNameListToDOList(List<NickNameEntity> nickNameEntityList);
+    List<ProductData> productListToDOList(List<ProductEntity> productEntityList);
 }

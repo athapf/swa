@@ -14,39 +14,39 @@ public class ProductData implements Serializable {
     private static final long serialVersionUID = -7049489388682590929L;
 
     private Long id;
-    private Date timestamp;
-    private String name;
-    private String nick;
+    private Long categorie;
+//    private ProductColorEnum color;
+    private Date desiredDelivery;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(final Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public Long getCategorie() {
+        return categorie;
     }
 
-    public void setTimestamp(final Date timestamp) {
-        this.timestamp = timestamp;
+    public void setCategorie(Long categorie) {
+        this.categorie = categorie;
     }
 
-    public String getName() {
-        return name;
+//    public ProductColorEnum getColor() {
+//        return color;
+//    }
+
+//    public void setColor(ProductColorEnum color) {
+//        this.color = color;
+//    }
+
+    public Date getDesiredDelivery() {
+        return desiredDelivery;
     }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public String getNick() {
-        return nick;
-    }
-
-    public void setNick(final String nick) {
-        this.nick = nick;
+    public void setDesiredDelivery(Date desiredDelivery) {
+        this.desiredDelivery = desiredDelivery;
     }
 }

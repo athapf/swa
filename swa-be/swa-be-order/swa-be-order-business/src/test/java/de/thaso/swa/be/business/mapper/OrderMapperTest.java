@@ -1,13 +1,14 @@
 package de.thaso.swa.be.business.mapper;
 
-import de.thaso.swa.be.service.NickNameData;
-import de.thaso.swa.db.store.NickNameEntity;
+import de.thaso.swa.be.service.OrderData;
+import de.thaso.swa.db.store.order.OrderEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -34,7 +35,7 @@ public class OrderMapperTest {
     @Test
     public void convertToEntity_WhenDOIsNull() {
         // when
-        final NickNameEntity result = underTest.nickNameToEntity(null);
+        final OrderEntity result = underTest.orderToEntity(null);
         // then
         assertThat(result,is(nullValue()));
     }
@@ -42,25 +43,25 @@ public class OrderMapperTest {
     @Test
     public void convertListToDO() {
         // given
-        final ArrayList<NickNameEntity> nickNameEntityList = new ArrayList<>();
-        final NickNameEntity firstMessageEntity = new NickNameEntity();
+        final ArrayList<OrderEntity> orderEntityList = new ArrayList<>();
+        final OrderEntity firstMessageEntity = new OrderEntity();
         firstMessageEntity.setId(743L);
-        firstMessageEntity.setName("Hello");
-        nickNameEntityList.add(firstMessageEntity);
-        final NickNameEntity secondMessageEntity = new NickNameEntity();
+        firstMessageEntity.setCreated(new Date());
+        orderEntityList.add(firstMessageEntity);
+        final OrderEntity secondMessageEntity = new OrderEntity();
         secondMessageEntity.setId(234L);
-        secondMessageEntity.setName("World");
-        nickNameEntityList.add(secondMessageEntity);
+        secondMessageEntity.setCreated(new Date());
+        orderEntityList.add(secondMessageEntity);
         // when
-        final List<NickNameData> nickNameDataList = underTest.nickNameListToDOList(nickNameEntityList);
+        final List<OrderData> orderDataList = underTest.orderListToDOList(orderEntityList);
         // then
-        assertThat(nickNameDataList.size(),is(nickNameEntityList.size()));
+        assertThat(orderDataList.size(),is(orderEntityList.size()));
 
-        NickNameData firstNickNameData = nickNameDataList.get(0);
-        assertThat(firstNickNameData.getId(),is(firstMessageEntity.getId()));
-        assertThat(firstNickNameData.getName(),is(firstMessageEntity.getName()));
-        NickNameData secondNickNameData = nickNameDataList.get(1);
-        assertThat(secondNickNameData.getId(),is(secondMessageEntity.getId()));
-        assertThat(secondNickNameData.getName(),is(secondMessageEntity.getName()));
+        OrderData firstOrderData = orderDataList.get(0);
+        assertThat(firstOrderData.getId(),is(firstMessageEntity.getId()));
+//        assertThat(firstOrderData.getTimestamp(),is(firstMessageEntity.getCreated()));
+        OrderData secondOrderData = orderDataList.get(1);
+        assertThat(secondOrderData.getId(),is(secondMessageEntity.getId()));
+//        assertThat(secondOrderData.getTimestamp(),is(secondMessageEntity.getCreated()));
     }
 }

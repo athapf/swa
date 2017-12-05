@@ -1,9 +1,9 @@
 package de.thaso.swa.be.business;
 
 import de.thaso.swa.be.business.mapper.OrderMapper;
-import de.thaso.swa.be.service.NickNameData;
-import de.thaso.swa.db.store.NickNameDAO;
-import de.thaso.swa.db.store.NickNameEntity;
+import de.thaso.swa.be.service.OrderData;
+import de.thaso.swa.db.store.order.OrderDAO;
+import de.thaso.swa.db.store.order.OrderEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -30,7 +30,7 @@ public class OrderServiceImplTest {
     private OrderServiceImpl underTest;
 
     @Mock
-    private NickNameDAO nickNameDAO;
+    private OrderDAO orderDAO;
 
     @Mock
     private OrderMapper orderMapper;
@@ -43,26 +43,25 @@ public class OrderServiceImplTest {
     @Test
     public void testName() {
         // given
-        final NickNameData nickNameData = new NickNameData();
-        final NickNameEntity nickNameEntity = new NickNameEntity();
-        when(orderMapper.nickNameToEntity(nickNameData)).thenReturn(nickNameEntity);
+        final OrderData orderData = new OrderData();
+        final OrderEntity orderEntity = new OrderEntity();
+        when(orderMapper.orderToEntity(orderData)).thenReturn(orderEntity);
         // when
-        underTest.storeNickName(nickNameData);
+        underTest.storeOrder(orderData);
         // then
-        verify(nickNameDAO).storeNickName(nickNameEntity);
+        verify(orderDAO).storeOrder(orderEntity);
     }
 
     @Test
-    public void testFindByName() {
+    public void testFindOpenOrders() {
         // given
-        final String name = "Hugo";
-        final List<NickNameEntity> nickNameEntityList = new ArrayList<>();
-        when(nickNameDAO.findByName(name)).thenReturn(nickNameEntityList);
-        final List<NickNameData> nickNameDataList = new ArrayList<>();
-        when(orderMapper.nickNameListToDOList(nickNameEntityList)).thenReturn(nickNameDataList);
+        final List<OrderEntity> orderEntityList = new ArrayList<>();
+        when(orderDAO.findOpenOrders()).thenReturn(orderEntityList);
+        final List<OrderData> orderDataList = new ArrayList<>();
+        when(orderMapper.orderListToDOList(orderEntityList)).thenReturn(orderDataList);
         // when
-        final List<NickNameData> result = underTest.findByName(name);
+        final List<OrderData> result = underTest.findOpenOrders();
         // then
-        assertThat(result, is(nickNameDataList));
+        assertThat(result, is(orderDataList));
     }
 }

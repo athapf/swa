@@ -10,9 +10,7 @@ import java.util.List;
  */
 public interface ProductService {
 
-    void storeNickName(ProductData productData);
+    void storeProduct(ProductData productData);
 
-    List<ProductData> findByName(String name);
-
-    List<ProductData> findByNickName(String name, String nick);
+    List<ProductData> findByCategory(Long category);
 }

@@ -2,8 +2,7 @@ package de.thaso.swa.be.process.business;
 
 import de.thaso.swa.be.process.business.mapper.ProcessMapper;
 import de.thaso.swa.be.process.service.ProcessData;
-import de.thaso.mpt.db.store.NickNameDAO;
-import de.thaso.mpt.db.store.NickNameEntity;
+import de.thaso.swa.db.store.process.ProcessModelDAO;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -30,7 +29,7 @@ public class ProcessServiceImplTest {
     private ProcessServiceImpl underTest;
 
     @Mock
-    private NickNameDAO nickNameDAO;
+    private ProcessModelDAO processModelDAO;
 
     @Mock
     private ProcessMapper processMapper;

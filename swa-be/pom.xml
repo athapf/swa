@@ -182,8 +182,8 @@
 
     <modules>
         <module>swa-be-common</module>
-        <module>swa-be-process</module>
-        <module>swa-be-domain</module>
+        <!--<module>swa-be-process</module>-->
+        <!--<module>swa-be-domain</module>-->
         <module>swa-be-order</module>
         <module>swa-be-product</module>
     </modules>

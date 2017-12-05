@@ -59,6 +59,7 @@
                     <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>
             </plugin>
+<!--
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
@@ -78,6 +79,7 @@
                     
                 </configuration>
             </plugin>
+-->
             <plugin>
                 <groupId>org.glassfish.maven.plugin</groupId>
                 <artifactId>maven-glassfish-plugin</artifactId>

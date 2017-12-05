@@ -1,10 +1,10 @@
 package de.thaso.swa.be.business;
 
 import de.thaso.swa.be.business.mapper.OrderMapper;
-import de.thaso.swa.be.service.NickNameData;
-import de.thaso.swa.be.service.NickNameService;
-import de.thaso.mpt.db.store.NickNameDAO;
-import de.thaso.mpt.db.store.NickNameEntity;
+import de.thaso.swa.be.service.OrderData;
+import de.thaso.swa.be.service.OrderService;
+import de.thaso.swa.db.store.order.OrderDAO;
+import de.thaso.swa.db.store.order.OrderEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,42 +14,33 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * NickNameImpl
+ * OrderImpl
  *
  * @author thaler
  * @since 21.09.16
  */
 @Stateless
-@Remote(NickNameService.class)
-public class OrderServiceImpl implements NickNameService {
+@Remote(OrderService.class)
+public class OrderServiceImpl implements OrderService {
 
     public static final Logger LOG = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Inject
-    private NickNameDAO nickNameDAO;
+    private OrderDAO orderDAO;
 
     @Inject
     private OrderMapper orderMapper;
 
     @Override
-    public void storeNickName(final NickNameData nickNameData) {
-        final NickNameEntity nickNameEntity = orderMapper.nickNameToEntity(nickNameData);
-        nickNameDAO.storeNickName(nickNameEntity);
+    public void storeOrder(final OrderData orderData) {
+        final OrderEntity orderEntity = orderMapper.orderToEntity(orderData);
+        orderDAO.storeOrder(orderEntity);
     }
 
     @Override
-    public List<NickNameData> findByName(final String name) {
-        LOG.debug("findByName( {} ) ...", name);
-        final List<NickNameEntity> lastNameList = nickNameDAO.findByName(name);
-        final List<NickNameData> nickNameDataList = orderMapper.nickNameListToDOList(lastNameList);
-        LOG.debug(" ... found {} messages", nickNameDataList.size());
-        return nickNameDataList;
-    }
-
-    @Override
-    public List<NickNameData> findByNickName(final String name, final String nick) {
-        LOG.debug("findByNickName( {}, {} )", name, nick);
-        final List<NickNameEntity> nameEntityList = nickNameDAO.findByNickName(name, nick);
-        return orderMapper.nickNameListToDOList(nameEntityList);
+    public List<OrderData> findOpenOrders() {
+        LOG.debug("findOpenOrders ...");
+        final List<OrderEntity> orderEntityList = orderDAO.findOpenOrders();
+        return orderMapper.orderListToDOList(orderEntityList);
     }
 }

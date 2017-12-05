@@ -1,7 +1,6 @@
 package de.thaso.swa.be.process.business.mapper;
 
 import de.thaso.swa.be.process.service.ProcessData;
-import de.thaso.mpt.db.store.NickNameEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;

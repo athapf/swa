@@ -47,12 +47,12 @@ public class ProductDAO {
         return productEntity;
     }
 
-    public List<ProductEntity> findProductsByCategorie(final Long categorie) {
+    public List<ProductEntity> findProductsByCategory(final Long category) {
         LOG.info("findProductsByCategorie");
 
         final TypedQuery<ProductEntity> query
                 = entityManager.createNamedQuery(ProductEntity.FIND_BY_CATEGORIE, ProductEntity.class);
-        query.setParameter("categorie", categorie);
+        query.setParameter("categorie", category);
         return query.getResultList();
     }
 }

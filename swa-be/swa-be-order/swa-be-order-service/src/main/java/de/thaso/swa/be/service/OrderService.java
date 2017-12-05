@@ -10,9 +10,7 @@ import java.util.List;
  */
 public interface OrderService {
 
-    void storeNickName(OrderData orderData);
+    void storeOrder(OrderData orderData);
 
-    List<OrderData> findByName(String name);
-
-    List<OrderData> findByNickName(String name, String nick);
+    List<OrderData> findOpenOrders();
 }

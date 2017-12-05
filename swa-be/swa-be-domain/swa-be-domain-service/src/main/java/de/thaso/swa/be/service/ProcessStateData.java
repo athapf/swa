@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * NickNameData
+ * ProcessStateData
  *
  * @author thaler
  * @since 21.09.16
  */
-public class NickNameData implements Serializable {
+public class ProcessStateData implements Serializable {
 
     private static final long serialVersionUID = -7049489388682590929L;
 

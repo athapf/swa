@@ -2,8 +2,8 @@ package de.thaso.swa.be.business;
 
 import de.thaso.swa.be.business.mapper.ProductMapper;
 import de.thaso.swa.be.product.service.ProductData;
-import de.thaso.mpt.db.store.NickNameDAO;
-import de.thaso.mpt.db.store.NickNameEntity;
+import de.thaso.swa.db.store.product.ProductDAO;
+import de.thaso.swa.db.store.product.ProductEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -55,13 +55,13 @@ public class ProductServiceImplTest {
     @Test
     public void testFindByName() {
         // given
-        final String name = "Hugo";
+        final Long category = 4L;
         final List<ProductEntity> productEntityList = new ArrayList<>();
-        when(productDAO.findByName(name)).thenReturn(productEntityList);
+        when(productDAO.findProductsByCategory(category)).thenReturn(productEntityList);
         final List<ProductData> productDataList = new ArrayList<>();
         when(productMapper.productListToDOList(productEntityList)).thenReturn(productDataList);
         // when
-        final List<ProductData> result = underTest.findByName(name);
+        final List<ProductData> result = underTest.findByCategory(category);
         // then
         assertThat(result, is(productDataList));
     }

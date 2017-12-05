@@ -1,7 +1,7 @@
 package de.thaso.swa.be.business.mapper;
 
 import de.thaso.swa.be.product.service.ProductData;
-import de.thaso.swa.db.store.NickNameEntity;
+import de.thaso.swa.db.store.product.ProductEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
@@ -45,11 +45,9 @@ public class ProductMapperTest {
         final ArrayList<ProductEntity> productEntityList = new ArrayList<>();
         final ProductEntity firstMessageEntity = new ProductEntity();
         firstMessageEntity.setId(743L);
-        firstMessageEntity.setName("Hello");
         productEntityList.add(firstMessageEntity);
         final ProductEntity secondMessageEntity = new ProductEntity();
         secondMessageEntity.setId(234L);
-        secondMessageEntity.setName("World");
         productEntityList.add(secondMessageEntity);
         // when
         final List<ProductData> productDataList = underTest.productListToDOList(productEntityList);
@@ -58,9 +56,7 @@ public class ProductMapperTest {
 
         ProductData firstProductData = productDataList.get(0);
         assertThat(firstProductData.getId(),is(firstMessageEntity.getId()));
-        assertThat(firstProductData.getName(),is(firstMessageEntity.getName()));
         ProductData secondProductData = productDataList.get(1);
         assertThat(secondProductData.getId(),is(secondMessageEntity.getId()));
-        assertThat(secondProductData.getName(),is(secondMessageEntity.getName()));
     }
 }
