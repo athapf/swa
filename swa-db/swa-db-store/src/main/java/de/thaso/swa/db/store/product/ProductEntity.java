@@ -1,6 +1,6 @@
 package de.thaso.swa.db.store.product;
 
-import de.thaso.swa.db.store.base.EntityBase;
+import de.thaso.swa.db.common.base.EntityBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

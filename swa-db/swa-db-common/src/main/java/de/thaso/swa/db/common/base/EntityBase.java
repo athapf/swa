@@ -1,4 +1,4 @@
-package de.thaso.swa.db.store.base;
+package de.thaso.swa.db.common.base;
 
 import java.io.Serializable;
 

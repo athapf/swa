@@ -1,4 +1,4 @@
-package de.thaso.swa.db.common;
+package de.thaso.swa.db.common.exception;
 
 /**
  * DatabaseError

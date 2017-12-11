@@ -214,6 +214,7 @@
     <module>swa-db-schema</module>
     <module>swa-db-common</module>
     <module>swa-db-store</module>
+    <module>swa-db-workshop</module>
     <module>swa-db-it</module>
   </modules>
 </project>

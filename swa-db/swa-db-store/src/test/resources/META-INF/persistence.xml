@@ -6,7 +6,7 @@
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>jdbc/swadb</jta-data-source>
         <!--<mapping-file>META-INF/orm.xml</mapping-file>-->
-        <class>de.thaso.swa.db.store.cart.ShoppingCartEntity</class>
+        <class>de.thaso.swa.db.store.cart.WorkshopEntity</class>
         <class>de.thaso.swa.db.store.process.ProcessStateEntity</class>
         <class>de.thaso.swa.db.store.process.ModelStateEntity</class>
         <class>de.thaso.swa.db.store.process.ModelEdgeEntity</class>

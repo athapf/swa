@@ -1,7 +1,7 @@
 package de.thaso.swa.db.store.order;
 
-import de.thaso.swa.db.common.DatabaseError;
-import de.thaso.swa.db.common.DatabaseException;
+import de.thaso.swa.db.common.exception.DatabaseError;
+import de.thaso.swa.db.common.exception.DatabaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

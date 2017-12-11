@@ -1,7 +1,7 @@
 package de.thaso.swa.db.store.utils;
 
-import de.thaso.swa.db.common.DatabaseError;
-import de.thaso.swa.db.common.DatabaseException;
+import de.thaso.swa.db.common.exception.DatabaseError;
+import de.thaso.swa.db.common.exception.DatabaseException;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
