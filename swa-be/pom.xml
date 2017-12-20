@@ -186,5 +186,6 @@
         <!--<module>swa-be-domain</module>-->
         <module>swa-be-order</module>
         <module>swa-be-product</module>
+        <module>swa-be-workshop</module>
     </modules>
 </project>
