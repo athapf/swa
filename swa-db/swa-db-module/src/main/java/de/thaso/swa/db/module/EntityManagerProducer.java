@@ -1,4 +1,4 @@
-package de.thaso.swa.db.workshop.utils;
+package de.thaso.swa.db.module;
 
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
@@ -9,11 +9,11 @@ import javax.persistence.PersistenceContext;
  * EntityManagerProducer
  *
  * @author thaler
- * @since 13.09.16
+ * @since 2017-12-12
  */
 public class EntityManagerProducer {
 
-    @PersistenceContext(unitName = "swa-workshop")
+    @PersistenceContext(unitName = "swadb2")
     private EntityManager entityManager;
 
     @Produces

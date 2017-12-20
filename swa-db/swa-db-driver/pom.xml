@@ -10,11 +10,13 @@
     </parent>
 
     <groupId>swa.db</groupId>
-    <artifactId>swa-db-schema</artifactId>
+    <artifactId>swa-db-driver</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>swa-db-schema-flyway</module>
+        <module>swa-db-driver-postgres</module>
+        <module>swa-db-driver-h2db</module>
+        <!--<module>swa-db-driver-db2</module>-->
     </modules>
 </project>

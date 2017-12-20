@@ -4,17 +4,23 @@
 
     <parent>
         <groupId>swa.db</groupId>
-        <artifactId>swa-db</artifactId>
+        <artifactId>swa-db-driver</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
-    <groupId>swa.db</groupId>
-    <artifactId>swa-db-schema</artifactId>
-    <packaging>pom</packaging>
+    <groupId>swa.db.driver</groupId>
+    <artifactId>swa-db-driver-h2db</artifactId>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <modules>
-        <module>swa-db-schema-flyway</module>
-    </modules>
+    <name>${artifactId}</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>

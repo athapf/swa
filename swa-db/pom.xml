@@ -211,10 +211,12 @@
         </plugins>
     </build>
   <modules>
+    <module>swa-db-driver</module>
     <module>swa-db-schema</module>
     <module>swa-db-common</module>
     <module>swa-db-store</module>
     <module>swa-db-workshop</module>
+    <module>swa-db-module</module>
     <module>swa-db-it</module>
   </modules>
 </project>

@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>swa.db</groupId>
-            <artifactId>swa-db-workshop</artifactId>
+            <artifactId>swa-db-module</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
