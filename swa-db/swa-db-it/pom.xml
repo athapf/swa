@@ -34,15 +34,11 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>swa.db</groupId>
-            <artifactId>swa-db-schema</artifactId>
+            <groupId>swa.db.schema</groupId>
+            <artifactId>swa-db-schema-${db.migration}</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
@@ -59,25 +55,11 @@
             <scope>test</scope>
         </dependency>
 
-<!--
         <dependency>
-            <groupId>com.ibm.db2.jcc</groupId>
-            <artifactId>licences</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.db2.jcc</groupId>
-            <artifactId>db2jcc4</artifactId>
-        </dependency>
--->
-<!--
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
--->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>swa.db.driver</groupId>
+            <artifactId>swa-db-driver-${db.driver}</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

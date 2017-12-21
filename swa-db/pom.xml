@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <db.driver>h2db</db.driver>
+        <db.migration>flyway</db.migration>
+
         <root.dir>${project.basedir}</root.dir>
         <org.mapstruct.version>1.0.0.Final</org.mapstruct.version>
 
