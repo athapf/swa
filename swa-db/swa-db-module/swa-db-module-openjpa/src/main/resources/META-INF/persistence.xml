@@ -2,11 +2,18 @@
 <persistence version="2.0"
              xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-    <!--<persistence-unit name="swadb" transaction-type="JTA">  -->
-    <persistence-unit name="testdb" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="swadb" transaction-type="JTA">
+    <!--<persistence-unit name="testdb" transaction-type="RESOURCE_LOCAL">-->
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>jdbc/swadb</jta-data-source>
         <!--<mapping-file>META-INF/orm.xml</mapping-file>-->
+        <class>de.thaso.swa.db.workshop.cart.WorkshopEntity</class>
+        <class>de.thaso.swa.db.store.cart.ShoppingCartEntity</class>
+        <class>de.thaso.swa.db.store.process.ProcessStateEntity</class>
+        <class>de.thaso.swa.db.store.process.ModelStateEntity</class>
+        <class>de.thaso.swa.db.store.process.ModelEdgeEntity</class>
+        <class>de.thaso.swa.db.store.process.ModelActionEntity</class>
+        <class>de.thaso.swa.db.store.process.ModelGuardEntity</class>
         <class>de.thaso.swa.db.store.order.OrderEntity</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>

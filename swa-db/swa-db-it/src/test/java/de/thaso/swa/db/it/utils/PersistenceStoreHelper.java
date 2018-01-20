@@ -34,7 +34,9 @@ public class PersistenceStoreHelper {
     }
 
     public static Properties getConnectionProperties() {
-      return PropertiesManager.readDevelopProperties();
+        Properties properties = PropertiesManager.readDevelopProperties();
+        properties.setProperty("javax.persistence.transactiontype","RESOURCE_LOCAL");
+        return properties;
   }
 
     public static EntityManager getEntityManager() {
