@@ -19,23 +19,37 @@
 
     <dependencies>
         <dependency>
-            <groupId>swa.db</groupId>
-            <artifactId>swa-db-common</artifactId>
+            <groupId>swa.db.business</groupId>
+            <artifactId>swa-db-business-store</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>swa.db</groupId>
-            <artifactId>swa-db-store</artifactId>
+            <groupId>swa.db.business</groupId>
+            <artifactId>swa-db-business-workshop</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>swa.db</groupId>
-            <artifactId>swa-db-module</artifactId>
+            <groupId>swa.db.business</groupId>
+            <artifactId>swa-db-business-notes</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>swa.db.driver</groupId>
+            <artifactId>swa-db-driver-${db.driver}</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+<!--
+        <dependency>
+            <groupId>swa.db.module</groupId>
+            <artifactId>swa-db-module-${db.module}</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+-->
         <dependency>
             <groupId>swa.db.schema</groupId>
-            <artifactId>swa-db-schema-${db.migration}</artifactId>
+            <artifactId>swa-db-schema-${db.schema}</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -52,13 +66,6 @@
         <dependency>
             <groupId>org.apache.openjpa</groupId>
             <artifactId>openjpa-all</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>swa.db.driver</groupId>
-            <artifactId>swa-db-driver-${db.driver}</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

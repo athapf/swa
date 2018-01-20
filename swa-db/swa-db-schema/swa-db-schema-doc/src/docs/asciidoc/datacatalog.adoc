@@ -1,0 +1,34 @@
+
+# Datenkatalog
+
+Workshops erstellen, verwalten und durchführen
+
+## Entity StandardIdEntity (template)
+
+## Entity Workshop (based on StandardIdEntity)
+
+### Fields
+
+Title String varchar(50)
+
+  Bezeichnung des Workshops
+
+Number Integer decimal(4,0)
+
+  4-stelliges Kennzeichen des Workshops, ist eindeutig
+
+Content String varchar(4000)
+
+  Kurze Beschreibung und Inhalt des Workshops
+
+Duration Integer decimal(2,0)
+
+  Dauer des Workshops in Tage.
+
+DayOfEvent Date date
+
+  Datum, wann der Workshop startet bzw. bei eintägige Workshops wann er statt findet.
+
+Attendance Integer decimal(4,0)
+
+  Anzahl der Teilnehmer

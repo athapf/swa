@@ -19,12 +19,18 @@ public class PersistenceStoreHelper {
 
     public static final Logger LOG = LoggerFactory.getLogger(PersistenceStoreHelper.class);
 
-    private static final EntityManagerFactory entityManagerFactory;
-    private static final EntityManager entityManagerAud;
+    private static EntityManagerFactory entityManagerFactory;
+    private static EntityManager entityManagerAud;
 
     static {
-        entityManagerFactory = Persistence.createEntityManagerFactory("testdb", getConnectionProperties());
-        entityManagerAud = entityManagerFactory.createEntityManager();
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("testdb", getConnectionProperties());
+            entityManagerAud = entityManagerFactory.createEntityManager();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManagerFactory = null;
+            entityManagerAud = null;
+        }
     }
 
     public static Properties getConnectionProperties() {
