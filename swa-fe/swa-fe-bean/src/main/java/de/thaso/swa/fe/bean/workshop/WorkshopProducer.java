@@ -12,16 +12,13 @@ public class WorkshopProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(WorkshopProducer.class);
 
-//    @EJB
-//    private WorkshopService workshopService;
-
     @Produces
     @RequestScoped
     @Named("workshopModel")
     public WorkshopModel produceWorkshopModel(@New WorkshopModel workshopModel) {
         LOG.info("produce workshop model ...");
 
-        workshopModel.setTitle("Java in JEE");
+        workshopModel.setTitle("Java in JEE (42)");
 
         return workshopModel;
     }
