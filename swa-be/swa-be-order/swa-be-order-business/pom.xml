@@ -18,7 +18,7 @@
     <name>swa-be-order-business</name>
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>swa.db</groupId>
             <artifactId>swa-db-common</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -28,7 +28,7 @@
             <artifactId>swa-db-store</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+-->
         <dependency>
             <groupId>swa.be.order</groupId>
             <artifactId>swa-be-order-service</artifactId>

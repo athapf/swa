@@ -24,5 +24,7 @@
 
     <modules>
         <module>swa-db-module-openjpa</module>
+        <module>swa-db-module-eclipselink</module>
+        <module>swa-db-module-hibernate</module>
     </modules>
 </project>

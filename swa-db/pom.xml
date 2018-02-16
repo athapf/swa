@@ -20,8 +20,8 @@
         <flyway.version>4.0.3</flyway.version>
         <dbunit.version>2.5.2</dbunit.version>
 
-        <h2.version>1.4.192</h2.version>
-        <postgres.version>9.4.1210.jre6</postgres.version>
+        <h2.version>1.4.196</h2.version>
+        <postgres.version>42.1.3</postgres.version>
         <db2.version>10.5</db2.version>
 
         <slf4j.version>1.7.21</slf4j.version>
@@ -29,9 +29,6 @@
 
         <openjpa.version>2.2.1</openjpa.version>
         <eclipselink.version>2.7.1</eclipselink.version>
-
-        <h2.version>1.4.196</h2.version>
-        <postgres.version>42.1.3</postgres.version>
     </properties>
 
     <dependencyManagement>

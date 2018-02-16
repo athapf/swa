@@ -18,6 +18,7 @@
     <name>swa-be-workshop-business</name>
 
     <dependencies>
+<!--
         <dependency>
             <groupId>swa.db</groupId>
             <artifactId>swa-db-common</artifactId>
@@ -28,6 +29,7 @@
             <artifactId>swa-db-module</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+-->
 
         <dependency>
             <groupId>swa.be.workshop</groupId>
@@ -35,4 +37,17 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <ejbVersion>3.1</ejbVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

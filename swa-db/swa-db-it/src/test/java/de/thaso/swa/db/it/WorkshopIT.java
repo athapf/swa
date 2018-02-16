@@ -1,11 +1,8 @@
 package de.thaso.swa.db.it;
 
 import de.thaso.swa.db.it.base.DbTestBase;
-import de.thaso.swa.db.store.process.ModelActionEntity;
-import de.thaso.swa.db.store.process.ModelDataDAO;
-import de.thaso.swa.db.store.process.ModelStateEntity;
-import de.thaso.swa.db.workshop.cart.WorkshopDAO;
-import de.thaso.swa.db.workshop.cart.WorkshopEntity;
+import de.thaso.swa.db.workshop.WorkshopDAO;
+import de.thaso.swa.db.workshop.WorkshopEntity;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,11 +11,8 @@ import org.mockito.InjectMocks;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.MockitoAnnotations.initMocks;

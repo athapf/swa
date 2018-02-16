@@ -3,8 +3,8 @@ package de.thaso.swa.db.store.cart;
 import de.thaso.swa.db.common.exception.DatabaseError;
 import de.thaso.swa.db.common.exception.DatabaseException;
 import de.thaso.swa.db.store.utils.DatabaseExceptionCodeMatcher;
-import de.thaso.swa.db.workshop.cart.WorkshopDAO;
-import de.thaso.swa.db.workshop.cart.WorkshopEntity;
+import de.thaso.swa.db.workshop.WorkshopDAO;
+import de.thaso.swa.db.workshop.WorkshopEntity;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -131,5 +132,20 @@ public class WorkshopDAOTest {
         assertThat(result,is(workshopEntityList));
         verify(query).setParameter("title","Hugo");
         verify(query).setMaxResults(10);
+    }
+
+    @Test
+    public void findFromDate() {
+        // given
+        Date date = new Date();
+        final TypedQuery query = mock(TypedQuery.class);
+        when(entityManager.createNamedQuery(WorkshopEntity.FIND_FROM_DATE,WorkshopEntity.class)).thenReturn(query);
+        final List<WorkshopEntity> workshopEntityList = new ArrayList<>();
+        when(query.getResultList()).thenReturn(workshopEntityList);
+        // when
+        final List<WorkshopEntity> result = underTest.findFromDate(date);
+        // then
+        assertThat(result,is(workshopEntityList));
+        verify(query).setParameter("date",date);
     }
 }

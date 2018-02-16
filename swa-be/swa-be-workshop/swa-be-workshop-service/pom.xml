@@ -19,8 +19,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>swa.db</groupId>
-            <artifactId>swa-db-common</artifactId>
+            <groupId>swa.db.business</groupId>
+            <artifactId>swa-db-business-workshop</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

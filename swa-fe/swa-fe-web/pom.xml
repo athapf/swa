@@ -18,9 +18,11 @@
 
     <name>swa-fe-web</name>
 
+<!--
     <properties>
         <glassfish.home>${env.GLASSFISH}</glassfish.home>
     </properties>
+-->
 
     <dependencies>
         <dependency>
@@ -80,6 +82,7 @@
                 </configuration>
             </plugin>
 -->
+<!--
             <plugin>
                 <groupId>org.glassfish.maven.plugin</groupId>
                 <artifactId>maven-glassfish-plugin</artifactId>
@@ -102,8 +105,10 @@
                     </domain>
                 </configuration>
             </plugin>
+-->
         </plugins>
     </build>
+<!--
     <profiles>
         <profile>
             <id>deploy</id>
@@ -147,4 +152,5 @@
             </build>
         </profile>
     </profiles>
+-->
 </project>

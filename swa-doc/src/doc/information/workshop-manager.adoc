@@ -1,0 +1,70 @@
+# woma - Workshop Manager
+
+Unterstützung von Veranstalter und Besucher zum Planen und Durchführen von Workshops.
+
+Workshops werden vorbereitet, vom Durchführenden oder dessen Assistenten
+mit Informationen versehen evtl. auch Unterlagen angehängt,
+die der Teilnehmer nach Anmeldung und ggf. Zahlungseingang, personalisiert
+herunterladen kann.
+
+Erstellen eines Workshops vom Veranstalter, Themengebiet festlegen und
+Workshopnummer vergeben, Durchführenden zuweisen.
+Workshop-Wunsch vom Durchführenden mit Themengebiet erstellt. Muss vom Veranstalter
+vervollständigt werden.
+Teilnehmerzahl, Termin und Ort festlegen.
+Über Portal freigeben.
+Interessierte Teilnehmer können sich vormerken bzw. anmelden. Wenn kritische
+Teilnehmerzahl erreicht wird, ist Workshop sicher und wenn Kostenpflichtig, werden
+Zahlungen veranlasst.
+Durchführender oder dessen Assistenten erstellen Unterlagen. Unterlagen können offen
+oder nur für angemeldete Teilnehmer sein. Workshop-Ergebnisse können ebenfalls
+angehängt werden und sind auch offen oder für Teilnehmer.
+
+Gruppe von Workshops als Kongress zu einem Thema.
+
+System ist mandantenfähig.
+
+## Benutzer
+
+* Veranstalter
+* Durchführer
+* Assistent
+* Teilnehmer
+* Administrator
+
+## States
+
+* Workshop
+  - geplant
+  - gesichert
+  - abgelehnt
+  - ausgebucht
+  - aktiv
+  - durchgeführt
+  - gestrichen
+
+* Teilnahme
+  - reserviert
+  - gemeldet
+  - storniert
+  - bezahlt
+
+##
+
+Veranstalter erstellt Workshop mit Titel, Datum und weist Durchführenden zu. (vorgeplant))
+
+
+Durchführender/Assistent erstellt Workshop mit Titel (draft)
+
+Veranstalter ergänzt draft Workshop mit Datum.
+
+Veranstalter gibt Workshop als geplant frei.
+
+geplanter Workshop kann von Teilnehmer eingesehen werden.
+
+registrierter Teilnehmer kann sich zu Workshop melden.
+
+Teilnehmer registriert sich.
+
+Teilnehmer meldet sich ab.
+
