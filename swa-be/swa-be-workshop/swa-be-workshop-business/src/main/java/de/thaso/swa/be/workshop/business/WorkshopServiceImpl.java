@@ -4,6 +4,7 @@ import de.thaso.swa.be.workshop.WorkshopData;
 import de.thaso.swa.be.workshop.WorkshopService;
 import de.thaso.swa.be.workshop.WorkshopServiceLocal;
 import de.thaso.swa.be.workshop.business.mapper.WorkshopMapper;
+import de.thaso.swa.db.workshop.WorkshopDAO;
 import de.thaso.swa.db.workshop.WorkshopEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,8 +30,8 @@ public class WorkshopServiceImpl implements WorkshopService, WorkshopServiceLoca
 
     public static final Logger LOG = LoggerFactory.getLogger(WorkshopServiceImpl.class);
 
-    //@Inject
-    //private WorkshopDAO workshopDAO;
+    @Inject
+    private WorkshopDAO workshopDAO;
 
     @Inject
     private WorkshopMapper workshopMapper;
@@ -45,10 +45,8 @@ public class WorkshopServiceImpl implements WorkshopService, WorkshopServiceLoca
     @Override
     public List<WorkshopData> findAllWorkshops() {
         LOG.debug("findAllWorkshops ...");
-        final List<WorkshopEntity> workshopEntityList = new ArrayList<>(); //workshopDAO.findAll();
-        workshopEntityList.add(new WorkshopEntity());
-        workshopEntityList.get(0).setTitle("Workshop from Backend");
-        workshopEntityList.get(0).setNumber(3128);
+
+        List<WorkshopEntity> workshopEntityList = workshopDAO.findAll();
         return workshopMapper.workshopListToDOList(workshopEntityList);
     }
 }

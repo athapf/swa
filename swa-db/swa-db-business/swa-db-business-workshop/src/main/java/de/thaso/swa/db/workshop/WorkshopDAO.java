@@ -58,7 +58,7 @@ public class WorkshopDAO {
     }
 
     public List<WorkshopEntity> findAll() {
-        LOG.info("findByTitle()");
+        LOG.info("findAll()");
 
         final TypedQuery<WorkshopEntity> query
                 = entityManager.createNamedQuery(WorkshopEntity.FIND_ALL, WorkshopEntity.class);

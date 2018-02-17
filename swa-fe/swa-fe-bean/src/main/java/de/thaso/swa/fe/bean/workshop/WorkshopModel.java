@@ -9,6 +9,7 @@ public class WorkshopModel {
     private String title;
     private Integer number;
     private Date dayOfEvent;
+    private Integer duration;
     private Integer attendance;
 
     public String getTitle() {
@@ -33,6 +34,14 @@ public class WorkshopModel {
 
     public void setDayOfEvent(Date dayOfEvent) {
         this.dayOfEvent = dayOfEvent;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public Integer getAttendance() {

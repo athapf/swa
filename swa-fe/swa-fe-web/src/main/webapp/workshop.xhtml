@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
     <title>#{msg['swa.page.workshop.head']}</title>
@@ -10,8 +11,28 @@
     <h1>#{msg['swa.page.workshop.title']}</h1>
     <h3>#{msg['swa.page.workshop.subtitle']}</h3>
 
-    <p>Message: #{greetingsModel.simpleMessage}</p>
-    <p>Message: #{workshopModel.title}</p>
-    <p>Controller: #{workshopController.loadFirstWorkshop().title}</p>
+    <h:dataTable value="#{workshopTableModel.workshopModelList}" var="workshop" styleClass="swa-table"
+                 headerClass="swa-table-header" rowClasses="swa-table-odd-row,swa-table-even-row">
+        <h:column>
+            <f:facet name="header">#{msg['swa.page.workshop.table.number']}</f:facet>
+            #{workshop.number}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">#{msg['swa.page.workshop.table.title']}</f:facet>
+            #{workshop.title}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">#{msg['swa.page.workshop.table.duration']}</f:facet>
+            #{workshop.duration}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">#{msg['swa.page.workshop.table.attendance']}</f:facet>
+            #{workshop.attendance}
+        </h:column>
+    </h:dataTable>
+
 </h:body>
 </html>
