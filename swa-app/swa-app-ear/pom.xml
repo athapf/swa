@@ -54,11 +54,6 @@
 
         <dependency>
             <groupId>swa.be.workshop</groupId>
-            <artifactId>swa-be-workshop-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>swa.be.workshop</groupId>
             <artifactId>swa-be-workshop-business</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
@@ -78,11 +73,11 @@
             <scope>provided</scope>
         </dependency>
 <!--
-<dependency>
-    <groupId>org.wildfly.plugins</groupId>
-    <artifactId>wildfly-maven-plugin</artifactId>
-    <version>1.2.1.Final</version>
-</dependency>
+        <dependency>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>1.2.1.Final</version>
+        </dependency>
 -->
     </dependencies>
 

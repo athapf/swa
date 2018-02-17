@@ -8,7 +8,6 @@ import de.thaso.swa.db.workshop.WorkshopEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.ManagedBean;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
@@ -23,11 +22,11 @@ import java.util.List;
  * @author thaler
  * @since 2017-12-12
  */
-@Stateless
+@Stateless(name = "WorkshopService")
 @LocalBean
 @Remote(WorkshopService.class)
 @Local(WorkshopServiceLocal.class)
-public class WorkshopServiceImpl implements WorkshopService {
+public class WorkshopServiceImpl implements WorkshopService, WorkshopServiceLocal {
 
     public static final Logger LOG = LoggerFactory.getLogger(WorkshopServiceImpl.class);
 

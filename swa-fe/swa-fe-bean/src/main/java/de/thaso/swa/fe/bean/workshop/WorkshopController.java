@@ -2,6 +2,7 @@ package de.thaso.swa.fe.bean.workshop;
 
 import de.thaso.swa.be.workshop.WorkshopData;
 import de.thaso.swa.be.workshop.WorkshopService;
+import de.thaso.swa.fe.bean.workshop.mapper.WorkshopModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ public class WorkshopController {
 
     private static final Logger LOG = LoggerFactory.getLogger(WorkshopController.class);
 
-    @EJB
+    @EJB(lookup = "java:global/swa-app/swa-be-workshop-business/WorkshopService!de.thaso.swa.be.workshop.WorkshopService")
     private WorkshopService workshopService;
 
     @Inject
@@ -25,6 +26,9 @@ public class WorkshopController {
 
     @Inject
     private WorkshopModel workshopModel;
+
+    @Inject
+    private WorkshopModelMapper workshopModelMapper;
 
     public WorkshopModel loadWorkshop(final Long number) {
         final WorkshopModel workshopModel = new WorkshopModel();
@@ -35,10 +39,8 @@ public class WorkshopController {
 
     public WorkshopModel loadFirstWorkshop() {
         List<WorkshopData> workshopDataList = workshopService.findAllWorkshops();
+        List<WorkshopModel> workshopModelList = workshopModelMapper.workshopListToModelList(workshopDataList);
 
-        final WorkshopModel workshopModel = new WorkshopModel();
-
-        workshopModel.setTitle("The First Workshop");
-        return workshopModel;
+        return workshopModelList.get(0);
     }
 }

@@ -12,6 +12,9 @@ public class WorkshopProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(WorkshopProducer.class);
 
+    //@EJB(lookup = "java:global/swa-app/swa-be-workshop-business/WorkshopServiceImpl!de.thaso.swa.be.workshop.WorkshopService")
+    //private WorkshopService workshopService;
+
     @Produces
     @RequestScoped
     @Named("workshopModel")
