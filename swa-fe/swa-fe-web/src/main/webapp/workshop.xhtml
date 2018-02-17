@@ -14,6 +14,13 @@
     <h:dataTable value="#{workshopTableModel.workshopModelList}" var="workshop" styleClass="swa-table"
                  headerClass="swa-table-header" rowClasses="swa-table-odd-row,swa-table-even-row">
         <h:column>
+            <f:facet name="header">#{msg['swa.page.workshop.table.date']}</f:facet>
+            <h:outputFormat value="{0, date, yyyy-MM-dd}">
+                <f:param value="#{workshop.dayOfEvent}" />
+            </h:outputFormat>
+        </h:column>
+
+        <h:column>
             <f:facet name="header">#{msg['swa.page.workshop.table.number']}</f:facet>
             #{workshop.number}
         </h:column>

@@ -20,15 +20,17 @@ ${LOGIN_FAIL_MSG}  Falsches Passwort
 *** Test Cases ***
 
 Start Application
-    Go to    http://localhost:8086/swa
+    Go to    http://localhost:8080/swa
 
     Title Should Be    SWA
+    Page Should Contain    Hello World
 
 
 Notes Overview Page with 3 notes listed
     Remove all notes
     Insert 3 notes
 
-    Go to    http://localhost:8086/swa
+    Go to    http://localhost:8080/swa/workshop.xhtml
 
-    OverviewPage should be shown
+    Title Should Be    Woma
+    Page Should Contain    Workshop Manager
