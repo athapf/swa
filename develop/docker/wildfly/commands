@@ -1,0 +1,7 @@
+docker run -d --rm --name wf --link swa-pg:db -p 8080:8080 -p 9990:9990 wildfly 
+docker cp postgresql-42.1.3.jar wf:/opt/
+docker cp initdb.cli wf:/opt/
+docker exec -it wf /bin/bash
+docker stop wf
+
+# wildfly/bin/jboss-cli.sh -c --file=/opt/initdb.cli

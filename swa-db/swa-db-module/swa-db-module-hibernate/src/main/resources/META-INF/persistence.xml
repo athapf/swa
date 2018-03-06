@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="swadb" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:jboss/jdbc/swadb</jta-data-source>
+        <jta-data-source>java:jboss/datasources/swadb</jta-data-source>
         <class>de.thaso.swa.db.workshop.WorkshopEntity</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties/>
