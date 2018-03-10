@@ -32,7 +32,6 @@
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.24.0</version>
-
                 <executions>
                     <execution>
                         <id>docker:build</id>
@@ -45,6 +44,23 @@
                 <configuration>
                     <removeVolumes>true</removeVolumes>
                     <images>
+                        <image>
+                            <alias>swa-app</alias>
+                            <name>swa-app</name>
+                            <run>
+                                <hostname>swa-app</hostname>
+                                <cmd>
+                                    <shell>chown -R 1000.1000 /opt/jboss/wildfly/standalone/deployments</shell>
+                                </cmd>
+                                <wait>
+                                    <time>1000</time>
+                                </wait>
+                                <log>
+                                    <prefix>AC</prefix>
+                                    <color>red</color>
+                                </log>
+                           </run>
+                        </image>
                         <image>
                             <alias>swa-pg</alias>
                             <name>postgres:alpine</name>
@@ -96,6 +112,11 @@
                             </build>
                             <run>
                                 <hostname>swa-wf</hostname>
+                                <volumes>
+                                    <from>
+                                        <image>swa-app</image>
+                                    </from>
+                                </volumes>
                                 <ports>
                                     <port>8080:8080</port>
                                     <port>9990:9990</port>

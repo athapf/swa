@@ -22,6 +22,6 @@
     </build>
 
     <modules>
-        <module>database</module>
+        <module>develop</module>
     </modules>
 </project>

@@ -20,22 +20,6 @@
     <name>swa-app-ear</name>
 
     <dependencies>
-<!--
-        <dependency>
-            <groupId>swa.db</groupId>
-            <artifactId>swa-db-store</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <!- -<type>ejb</type>- ->
-        </dependency>
--->
-<!--
-        <dependency>
-            <groupId>swa.db.business</groupId>
-            <artifactId>swa-db-business-workshop</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>ejb</type>
-        </dependency>
--->
         <dependency>
             <groupId>swa.db</groupId>
             <artifactId>swa-db-common</artifactId>
@@ -66,104 +50,7 @@
             <version>1.0-SNAPSHOT</version>
             <type>war</type>
         </dependency>
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.1.3</version>
-            <scope>provided</scope>
-        </dependency>
-<!--
-        <dependency>
-            <groupId>org.wildfly.plugins</groupId>
-            <artifactId>wildfly-maven-plugin</artifactId>
-            <version>1.2.1.Final</version>
-        </dependency>
--->
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>wildflyInit</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <property>
-                    <name>wildflyInit</name>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>pg-deploy</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>deploy-artifact</goal>
-                                </goals>
-                                <configuration>
-                                    <groupId>org.postgresql</groupId>
-                                    <artifactId>postgresql</artifactId>
-                                    <name>postgresql-42.1.3.jar</name>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>add-datasource</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>add-resource</goal>
-                                </goals>
-                                <configuration>
-                                    <address>subsystem=datasources</address>
-                                    <resources>
-                                        <resource>
-                                            <address>xa-data-source=java:jboss/jdbc/swadb</address>
-                                            <!--<enableResource>true</enableResource>-->
-                                            <properties>
-                                                <xa-datasource-class>org.postgresql.xa.PGXADataSource
-                                                </xa-datasource-class>
-                                                <jndi-name>java:jboss/jdbc/swadb</jndi-name>
-                                                <enabled>true</enabled>
-                                                <driver-name>postgresql-42.1.3.jar</driver-name>
-                                            </properties>
-                                            <resources>
-                                                <resource>
-                                                    <address>xa-datasource-properties=DatabaseName</address>
-                                                    <properties>
-                                                        <value>swa</value>
-                                                    </properties>
-                                                </resource>
-                                                <resource>
-                                                    <address>xa-datasource-properties=ServerName</address>
-                                                    <properties>
-                                                        <value>db</value>
-                                                    </properties>
-                                                </resource>
-                                                <resource>
-                                                    <address>xa-datasource-properties=User</address>
-                                                    <properties>
-                                                        <value>swa</value>
-                                                    </properties>
-                                                </resource>
-                                                <resource>
-                                                    <address>xa-datasource-properties=Password</address>
-                                                    <properties>
-                                                        <value>swa</value>
-                                                    </properties>
-                                                </resource>
-                                            </resources>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
     <build>
     <finalName>swa-app</finalName>
@@ -192,89 +79,43 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.2.1.Final</version>
-                <configuration>
-                    <username>admin</username>
-                    <password>admin</password>
-                </configuration>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.24.0</version>
                 <executions>
-<!--
                     <execution>
-                        <id>pg-deploy</id>
-                        <phase>install</phase>
+                        <id>docker:build</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>deploy-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>org.postgresql</groupId>
-                            <artifactId>postgresql</artifactId>
-                            <name>postgresql-42.1.3.jar</name>
-                        </configuration>
-                    </execution>
--->
-<!--
-                    <execution>
-                        <id>add-datasource</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <address>subsystem=datasources</address>
-                            <resources>
-                                <resource>
-                                    <address>xa-data-source=java:jboss/jdbc/swadb</address>
-                                    &lt;!&ndash;<enableResource>true</enableResource>&ndash;&gt;
-                                    <properties>
-                                        <xa-datasource-class>org.postgresql.xa.PGXADataSource
-                                        </xa-datasource-class>
-                                        <jndi-name>java:jboss/jdbc/swadb</jndi-name>
-                                        <enabled>true</enabled>
-                                        <driver-name>postgresql-42.1.3.jar</driver-name>
-                                    </properties>
-                                    <resources>
-                                        <resource>
-                                            <address>xa-datasource-properties=DatabaseName</address>
-                                            <properties>
-                                                <value>swa</value>
-                                            </properties>
-                                        </resource>
-                                        <resource>
-                                            <address>xa-datasource-properties=ServerName</address>
-                                            <properties>
-                                                <value>db</value>
-                                            </properties>
-                                        </resource>
-                                        <resource>
-                                            <address>xa-datasource-properties=User</address>
-                                            <properties>
-                                                <value>swa</value>
-                                            </properties>
-                                        </resource>
-                                        <resource>
-                                            <address>xa-datasource-properties=Password</address>
-                                            <properties>
-                                                <value>swa</value>
-                                            </properties>
-                                        </resource>
-                                    </resources>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
--->
-<!--
-                    <execution>
-                        <id>app-deploy</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
+                            <goal>build</goal>
                         </goals>
                     </execution>
--->
                 </executions>
+                <configuration>
+                    <removeVolumes>true</removeVolumes>
+                    <images>
+                        <image>
+                            <alias>swa-app</alias>
+                            <name>swa-app</name>
+                            <build>
+                                <from>busybox</from>
+                                <assembly>
+                                    <descriptor>assembly.xml</descriptor>
+                                    <basedir>/</basedir>
+                                </assembly>
+                                <runCmds>
+                                    <shell>chown -R 1000.1000 /opt/jboss/wildfly/standalone/deployments</shell>
+                                </runCmds>
+                                <volumes>
+                                    <volume>/opt/jboss/wildfly/standalone/deployments</volume>
+                                </volumes>
+                                <cmd>
+                                    <shell>echo "swa app container"</shell>
+                                </cmd>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>
