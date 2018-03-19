@@ -1,0 +1,16 @@
+<serviceGroup>
+    <service name="FumWS" targetNamespace="http://web.fum.thaso.de/">
+        <description>JNLPGenerator service</description>
+        <schema schemaNamespace="http://web.fum.thaso.de/"/>
+        <parameter name="ServiceClass" locked="false">de.thaso.fum.web.FumService</parameter>
+        <operation name="ping">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </operation>
+        <operation name="findLoginUser">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </operation>
+        <operation name="storeLoginUser">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </operation>
+    </service>
+</serviceGroup>
