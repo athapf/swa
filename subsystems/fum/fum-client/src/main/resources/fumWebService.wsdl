@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://web.fum.thaso.de/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://web.fum.thaso.de/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
-                                                        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://web.fum.thaso.de/">
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://thaso.de/fum/ws" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://ws.fum.thaso.de/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                                                        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://thaso.de/fum/ws">
     <wsdl:documentation>FumWS</wsdl:documentation>
     <wsdl:types>
-        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://web.fum.thaso.de/xsd">
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.fum.thaso.de/xsd">
             <xs:complexType name="FumLoginUser">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="givenName" nillable="true" type="xs:string"/>
@@ -14,19 +14,19 @@
             </xs:complexType>
         </xs:schema>
         <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
-                   targetNamespace="http://web.fum.thaso.de/">
-            <xs:import namespace="http://web.fum.thaso.de/xsd"/>
-            <xs:element name="ping">
+                   targetNamespace="http://thaso.de/fum/ws">
+            <xs:import namespace="http://ws.fum.thaso.de/xsd"/>
+            <xs:element name="storeLoginUser">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="loginUser" nillable="true" type="ax21:FumLoginUser"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="pingResponse">
+            <xs:element name="storeLoginUserResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -44,17 +44,17 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="storeLoginUser">
+            <xs:element name="ping">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="loginUser" nillable="true" type="ax21:FumLoginUser"/>
+                        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="storeLoginUserResponse">
+            <xs:element name="pingResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

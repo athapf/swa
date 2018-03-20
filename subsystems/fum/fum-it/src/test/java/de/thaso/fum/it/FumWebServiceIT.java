@@ -1,8 +1,8 @@
 package de.thaso.fum.it;
 
-import de.thaso.fum.web.FumWS;
-import de.thaso.fum.web.FumWSPortType;
-import de.thaso.fum.web.xsd.FumLoginUser;
+import de.thaso.fum.ws.FumWS;
+import de.thaso.fum.ws.FumWSPortType;
+import de.thaso.fum.ws.xsd.FumLoginUser;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;

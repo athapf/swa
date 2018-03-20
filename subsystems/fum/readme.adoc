@@ -1,0 +1,6 @@
+= Soap-WebService - Server mit Apache Axis
+
+Ermitteln der wsdl-Datei:
+
+  mvn clean install tomcat7:run -f fum-web
+  curl -o fum-client/src/main/resources/fumWebService.wsdl http://localhost:8090/fum/services/FumWS?wsdl

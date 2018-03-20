@@ -89,7 +89,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <className>de.thaso.fum.web.FumService</className>
+                    <className>de.thaso.fum.ws.FumService</className>
                     <outputFileName>${project.build.directory}/fumService.wsdl</outputFileName>
                 </configuration>
             </plugin>

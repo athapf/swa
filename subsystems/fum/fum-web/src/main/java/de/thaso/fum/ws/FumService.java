@@ -1,4 +1,4 @@
-package de.thaso.fum.web;
+package de.thaso.fum.ws;
 
 import org.apache.commons.lang3.StringUtils;
 

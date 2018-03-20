@@ -1,8 +1,8 @@
 <serviceGroup>
-    <service name="FumWS" targetNamespace="http://web.fum.thaso.de/">
+    <service name="FumWS" targetNamespace="http://thaso.de/fum/ws">
         <description>JNLPGenerator service</description>
-        <schema schemaNamespace="http://web.fum.thaso.de/"/>
-        <parameter name="ServiceClass" locked="false">de.thaso.fum.web.FumService</parameter>
+        <schema schemaNamespace="http://thaso.de/fum/ws"/>
+        <parameter name="ServiceClass" locked="false">de.thaso.fum.ws.FumService</parameter>
         <operation name="ping">
             <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
         </operation>
