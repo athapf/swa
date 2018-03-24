@@ -22,6 +22,11 @@
             <artifactId>fum-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.2.6-2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,35 +57,81 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>65401</port>
-                    <path>/fum</path>
-                    <uriEncoding>UTF-8</uriEncoding>
-                    <warDirectory>${project.build.directory}/webapp/</warDirectory>
-                    <fork>true</fork>
-                    <ignorePackaging>true</ignorePackaging>
-                </configuration>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.24.0</version>
                 <executions>
                     <execution>
-                        <id>tomcat-run</id>
+                        <id>prepare-it-test</id>
                         <goals>
-                            <goal>run-war-only</goal>
+                            <goal>start</goal>
                         </goals>
                         <phase>pre-integration-test</phase>
                         <configuration>
-                            <fork>true</fork>
+                            <removeVolumes>true</removeVolumes>
+                            <images>
+                                <image>
+                                    <alias>webservice</alias>
+                                    <name>tomcat:alpine</name>
+                                    <run>
+                                        <hostname>webservice</hostname>
+                                        <volumes>
+                                            <bind>
+                                                <volume>
+                                                    ${project.build.directory}/webapp:/usr/local/tomcat/webapps/fum
+                                                </volume>
+                                            </bind>
+                                        </volumes>
+                                        <wait>
+                                            <log>start Server startup in</log>
+                                            <time>5000</time>
+                                        </wait>
+                                        <ports>
+                                            <port>65402:8080</port>
+                                        </ports>
+                                        <log>
+                                            <prefix>WS</prefix>
+                                            <color>red</color>
+                                        </log>
+                                    </run>
+                                </image>
+                                <image>
+                                    <alias>nginx</alias>
+                                    <name>nginx:alpine</name>
+                                    <run>
+                                        <hostname>nginx</hostname>
+                                        <volumes>
+                                            <bind>
+                                                <volume>
+                                                    ${project.basedir}/src/main/nginx/default.conf:/etc/nginx/conf.d/default.conf
+                                                </volume>
+                                                <volume>${project.basedir}/src/main/nginx/certs:/etc/nginx/certs
+                                                </volume>
+                                            </bind>
+                                        </volumes>
+                                        <links>
+                                            <link>webservice:service</link>
+                                        </links>
+                                        <ports>
+                                            <port>65401:443</port>
+                                        </ports>
+                                        <log>
+                                            <prefix>NG</prefix>
+                                            <color>yellow</color>
+                                        </log>
+                                    </run>
+                                </image>
+                            </images>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>tomcat-shutdown</id>
-                        <goals>
-                            <goal>shutdown</goal>
-                        </goals>
+                        <id>stop-it-test</id>
                         <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

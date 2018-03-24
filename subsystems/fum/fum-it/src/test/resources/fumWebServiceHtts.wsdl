@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://thaso.de/fum/ws" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://ws.fum.thaso.de/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                                                        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://thaso.de/fum/ws">
+    <wsdl:documentation>FumWS</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.fum.thaso.de/xsd">
+            <xs:complexType name="FumLoginUser">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="givenName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" nillable="true" type="xs:long"/>
+                    <xs:element minOccurs="0" name="loginName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="password" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="sureName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified"
+                   targetNamespace="http://thaso.de/fum/ws">
+            <xs:import namespace="http://ws.fum.thaso.de/xsd"/>
+            <xs:element name="storeLoginUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginUser" nillable="true" type="ax21:FumLoginUser"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="storeLoginUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findLoginUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loginName" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findLoginUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax21:FumLoginUser"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ping">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="text" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="storeLoginUserRequest">
+        <wsdl:part name="parameters" element="ns:storeLoginUser"/>
+    </wsdl:message>
+    <wsdl:message name="storeLoginUserResponse">
+        <wsdl:part name="parameters" element="ns:storeLoginUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="findLoginUserRequest">
+        <wsdl:part name="parameters" element="ns:findLoginUser"/>
+    </wsdl:message>
+    <wsdl:message name="findLoginUserResponse">
+        <wsdl:part name="parameters" element="ns:findLoginUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="pingRequest">
+        <wsdl:part name="parameters" element="ns:ping"/>
+    </wsdl:message>
+    <wsdl:message name="pingResponse">
+        <wsdl:part name="parameters" element="ns:pingResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="FumWSPortType">
+        <wsdl:operation name="storeLoginUser">
+            <wsdl:input message="ns:storeLoginUserRequest" wsaw:Action="urn:storeLoginUser"/>
+            <wsdl:output message="ns:storeLoginUserResponse" wsaw:Action="urn:storeLoginUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="findLoginUser">
+            <wsdl:input message="ns:findLoginUserRequest" wsaw:Action="urn:findLoginUser"/>
+            <wsdl:output message="ns:findLoginUserResponse" wsaw:Action="urn:findLoginUserResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ping">
+            <wsdl:input message="ns:pingRequest" wsaw:Action="urn:ping"/>
+            <wsdl:output message="ns:pingResponse" wsaw:Action="urn:pingResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="FumWSSoap11Binding" type="ns:FumWSPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="storeLoginUser">
+            <soap:operation soapAction="urn:storeLoginUser" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findLoginUser">
+            <soap:operation soapAction="urn:findLoginUser" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ping">
+            <soap:operation soapAction="urn:ping" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="FumWSSoap12Binding" type="ns:FumWSPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="storeLoginUser">
+            <soap12:operation soapAction="urn:storeLoginUser" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findLoginUser">
+            <soap12:operation soapAction="urn:findLoginUser" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ping">
+            <soap12:operation soapAction="urn:ping" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="FumWSHttpBinding" type="ns:FumWSPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="storeLoginUser">
+            <http:operation location="FumWS/storeLoginUser"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="storeLoginUser"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="storeLoginUser"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findLoginUser">
+            <http:operation location="FumWS/findLoginUser"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="findLoginUser"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="findLoginUser"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ping">
+            <http:operation location="FumWS/ping"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="ping"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="ping"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="FumWS">
+        <wsdl:port name="FumWSHttpSoap11Endpoint" binding="ns:FumWSSoap11Binding">
+            <soap:address location="http://localhost:8090/fum/services/FumWS.FumWSHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="FumWSHttpSoap12Endpoint" binding="ns:FumWSSoap12Binding">
+            <soap12:address location="http://localhost:8090/fum/services/FumWS.FumWSHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="FumWSHttpEndpoint" binding="ns:FumWSHttpBinding">
+            <http:address location="http://localhost:8090/fum/services/FumWS.FumWSHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

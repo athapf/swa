@@ -101,6 +101,31 @@
                     <removeVolumes>true</removeVolumes>
                     <images>
                         <image>
+                            <alias>webservice</alias>
+                            <name>tomcat:alpine</name>
+                            <run>
+                                <hostname>webservice</hostname>
+                                <volumes>
+                                    <bind>
+                                        <volume>${project.build.directory}/${build.finalName}.war:/usr/local/tomcat/webapps/${build.finalName}.war</volume>
+                                    </bind>
+                                </volumes>
+<!--
+                                <ports>
+                                    <port>8090:8080</port>
+                                </ports>
+-->
+                                <wait>
+                                    <log>start Server startup in</log>
+                                    <time>5000</time>
+                                </wait>
+                                <log>
+                                    <prefix>WS</prefix>
+                                    <color>red</color>
+                                </log>
+                            </run>
+                        </image>
+                        <image>
                             <alias>nginx</alias>
                             <name>nginx:alpine</name>
                             <run>
@@ -111,46 +136,20 @@
                                         <volume>${project.basedir}/src/main/certs:/etc/nginx/certs</volume>
                                     </bind>
                                 </volumes>
+                                <links>
+                                    <link>webservice:service</link>
+                                </links>
                                 <ports>
                                     <port>8443:443</port>
                                 </ports>
-                                <extraHosts>service:192.168.105.104</extraHosts>
                                 <log>
                                     <prefix>NG</prefix>
-                                    <color>red</color>
+                                    <color>yellow</color>
                                 </log>
                             </run>
                         </image>
                     </images>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>8090</port>
-                    <path>/fum</path>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>tomcat-run</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <!--<phase>pre-integration-test</phase>-->
-                        <configuration>
-                            <fork>true</fork>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>tomcat-shutdown</id>
-                        <goals>
-                            <goal>shutdown</goal>
-                        </goals>
-                        <!--<phase>post-integration-test</phase>-->
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
