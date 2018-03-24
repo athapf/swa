@@ -94,6 +94,37 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.24.0</version>
+                <configuration>
+                    <removeVolumes>true</removeVolumes>
+                    <images>
+                        <image>
+                            <alias>nginx</alias>
+                            <name>nginx:alpine</name>
+                            <run>
+                                <hostname>nginx</hostname>
+                                <volumes>
+                                    <bind>
+                                        <volume>${project.basedir}/src/main/nginx/default.conf:/etc/nginx/conf.d/default.conf</volume>
+                                        <volume>${project.basedir}/src/main/certs:/etc/nginx/certs</volume>
+                                    </bind>
+                                </volumes>
+                                <ports>
+                                    <port>8443:443</port>
+                                </ports>
+                                <extraHosts>service:192.168.105.104</extraHosts>
+                                <log>
+                                    <prefix>NG</prefix>
+                                    <color>red</color>
+                                </log>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>

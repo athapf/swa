@@ -1,0 +1,41 @@
+= Zertifikate und Keystore
+
+== Root-CA und Server-Zertifikat
+
+private Key für Root-CA erstellen (Passwort: geheim)
+
+  openssl genrsa -aes256 -out ./ca.key 2048
+
+Self-Signed Zertifikat erstellen
+
+  openssl req -x509 -new -nodes -extensions v3_ca -key ./ca.key -days 1024 -out ./ca.crt -sha512 -config ./openssl.cnf
+
+privater Key für Server erstellen (ohne Passwort)
+
+  openssl genrsa -out ./server.key 2048
+
+Request erstellen
+
+  openssl req -new -key ./server.key -out ./server.csr -sha512 -config ./openssl.cnf
+
+Zertifikat für Server signieren
+
+  openssl x509 -req -in ./server.csr -CA ./ca.crt -CAkey ./ca.key -CAcreateserial -out ./server.crt -days 365 -sha512
+
+CA-Zertifikat an Server-Zertifikat anhängen
+
+  cat ./ca.crt >> ./server.crt
+
+== Java-Keystore erstellen
+
+Server-Zertifikat in neue Keystore-Datei aufnehmen (Passwort: geheim)
+
+  keytool -import -trustcacerts -alias server -file ./server.crt -keystore ./keystore.jks
+
+Inhalt des Keystores listen
+
+  keytool -list -keystore ./keystore.jks
+
+== Diffie-Hellman Key erstellen
+
+  openssl dhparam -out ./dh2048.pem 2048
