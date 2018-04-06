@@ -14,6 +14,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
 import javax.xml.ws.BindingProvider;
+import javax.xml.ws.Service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -25,7 +26,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class FumWebServiceHttpsIT {
+public class FumWebServiceHttpsEndpointIT {
 
     public static final String WEB_SERVICE_URL = "https://server:65401/fum/services/FumWS";
 //    public static final String WEB_SERVICE_URL = "https://server:8443/fum/services/FumWS";
@@ -37,12 +38,11 @@ public class FumWebServiceHttpsIT {
 
     private URL url;
     private HttpsURLConnection connection;
-    private FumWS service;
     private FumWSPortType servicePort;
 
     @Before
     public void setUp() throws Exception {
-        //System.setProperty("javax.net.debug", "all");
+//        System.setProperty("javax.net.debug", "all");
         System.setProperty("javax.net.ssl.trustStore", "");
         System.setProperty("javax.net.ssl.keyStore", "");
         url = new URL(WEB_SERVICE_URL +"?wsdl");
@@ -50,11 +50,11 @@ public class FumWebServiceHttpsIT {
         connection.setSSLSocketFactory(createSSLSocketFactory());
 
         url = this.getClass().getResource(WSDL_FILE);
-        service = new FumWS(url, FumWS.SERVICE);
-        servicePort = service.getFumWSHttpSoap12Endpoint();
+        final Service service = Service.create(url, FumWS.SERVICE);
+        servicePort = service.getPort(FumWSPortType.class);
 
         ((BindingProvider) servicePort).getRequestContext().put(JAXWSProperties.SSL_SOCKET_FACTORY, createSSLSocketFactory());
-        ((BindingProvider) servicePort).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, WEB_SERVICE_URL + ".FumWSHttpSoap12Endpoint/");
+        ((BindingProvider) servicePort).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, WEB_SERVICE_URL + ".FumWSHttpEndpoint/");
     }
 
     private SSLSocketFactory createSSLSocketFactory() throws Exception {
@@ -82,15 +82,6 @@ public class FumWebServiceHttpsIT {
         final int result = connection.getResponseCode();
         // then
         assertThat(result, is(200));
-
-/*
-        final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String line = bufferedReader.readLine();
-        while(line != null) {
-            System.out.println(line);
-            line = bufferedReader.readLine();
-        }
-*/
     }
 
     @Test

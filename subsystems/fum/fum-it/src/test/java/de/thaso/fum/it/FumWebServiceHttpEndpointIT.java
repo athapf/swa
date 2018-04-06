@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.xml.ws.Service;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -18,13 +19,12 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class FumWebServiceIT {
+public class FumWebServiceHttpEndpointIT {
 
     public static final String PING_TEXT = RandomStringUtils.randomAlphanumeric(10);
 
     private URL url;
     private HttpURLConnection connection;
-    private FumWS service;
     private FumWSPortType servicePort;
 
     @Before
@@ -32,8 +32,8 @@ public class FumWebServiceIT {
         url = new URL("http://localhost:65402/fum/services/FumWS?wsdl");
 //        url = new URL("http://localhost:8090/fum/services/FumWS?wsdl");
         connection = (HttpURLConnection) url.openConnection();
-        service = new FumWS(url, FumWS.SERVICE);
-        servicePort = service.getFumWSHttpSoap12Endpoint();
+        final Service service = Service.create(url, FumWS.SERVICE);
+        servicePort = service.getPort(FumWSPortType.class);
     }
 
     @Test
