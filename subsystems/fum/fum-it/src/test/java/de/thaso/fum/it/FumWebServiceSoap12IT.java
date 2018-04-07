@@ -1,5 +1,6 @@
 package de.thaso.fum.it;
 
+import de.thaso.fum.utils.PropertiesManager;
 import de.thaso.fum.ws.FumWS;
 import de.thaso.fum.ws.FumWSPortType;
 import de.thaso.fum.ws.xsd.FumLoginUser;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -20,6 +22,9 @@ import static org.hamcrest.core.Is.is;
 
 public class FumWebServiceSoap12IT {
 
+    public static final String URL_KEY = "fum.webservice.http";
+
+    public static final String WEB_SERVICE_URL_PATH = "fum/services/FumWS";
     public static final String PING_TEXT = RandomStringUtils.randomAlphanumeric(10);
 
     private URL url;
@@ -29,8 +34,10 @@ public class FumWebServiceSoap12IT {
 
     @Before
     public void setUp() throws Exception {
-        url = new URL("http://localhost:65402/fum/services/FumWS?wsdl");
-//        url = new URL("http://localhost:8090/fum/services/FumWS?wsdl");
+        final Properties properties = PropertiesManager.readDevelopProperties();
+
+        final String urlString = StringUtils.join(properties.getProperty(URL_KEY),"/",WEB_SERVICE_URL_PATH);
+        url = new URL(StringUtils.join(urlString, "?wsdl"));
         connection = (HttpURLConnection) url.openConnection();
         service = new FumWS(url, FumWS.SERVICE);
         servicePort = service.getFumWSHttpSoap12Endpoint();

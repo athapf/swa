@@ -1,6 +1,7 @@
 package de.thaso.fum.it;
 
 import com.sun.xml.ws.developer.JAXWSProperties;
+import de.thaso.fum.utils.PropertiesManager;
 import de.thaso.fum.ws.FumWS;
 import de.thaso.fum.ws.FumWSPortType;
 import de.thaso.fum.ws.xsd.FumLoginUser;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.security.KeyStore;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -27,8 +29,9 @@ import static org.hamcrest.core.Is.is;
 
 public class FumWebServiceHttpsIT {
 
-    public static final String WEB_SERVICE_URL = "https://server:65401/fum/services/FumWS";
-//    public static final String WEB_SERVICE_URL = "https://server:8443/fum/services/FumWS";
+    public static final String URL_KEY = "fum.webservice.https";
+
+    public static final String WEB_SERVICE_URL_PATH = "fum/services/FumWS";
     public static final String KEYSTORE_FILE = "/keystore.jks";
     public static final String KEYSTORE_TYPE = "jks";
     public static final String KEYSTORE_PASSWORD = "geheim";
@@ -42,10 +45,13 @@ public class FumWebServiceHttpsIT {
 
     @Before
     public void setUp() throws Exception {
+        final Properties properties = PropertiesManager.readDevelopProperties();
+
         //System.setProperty("javax.net.debug", "all");
         System.setProperty("javax.net.ssl.trustStore", "");
         System.setProperty("javax.net.ssl.keyStore", "");
-        url = new URL(WEB_SERVICE_URL +"?wsdl");
+        final String urlString = StringUtils.join(properties.getProperty(URL_KEY),"/",WEB_SERVICE_URL_PATH);
+        url = new URL(StringUtils.join(urlString, "?wsdl"));
         connection = (HttpsURLConnection) url.openConnection();
         connection.setSSLSocketFactory(createSSLSocketFactory());
 
@@ -54,7 +60,7 @@ public class FumWebServiceHttpsIT {
         servicePort = service.getFumWSHttpSoap12Endpoint();
 
         ((BindingProvider) servicePort).getRequestContext().put(JAXWSProperties.SSL_SOCKET_FACTORY, createSSLSocketFactory());
-        ((BindingProvider) servicePort).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, WEB_SERVICE_URL + ".FumWSHttpSoap12Endpoint/");
+        ((BindingProvider) servicePort).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, StringUtils.join(urlString, ".FumWSHttpSoap12Endpoint/"));
     }
 
     private SSLSocketFactory createSSLSocketFactory() throws Exception {
