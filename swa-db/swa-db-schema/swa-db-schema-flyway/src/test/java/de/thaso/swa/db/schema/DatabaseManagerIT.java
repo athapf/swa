@@ -6,12 +6,12 @@ import org.junit.Test;
 import java.util.Properties;
 
 /**
- * DatabaseManagerTest
+ * DatabaseManagerIT
  *
  * @author thaler
  * @since 13.09.16
  */
-public class DatabaseManagerTest {
+public class DatabaseManagerIT {
 
     private DatabaseManager underTest;
 
