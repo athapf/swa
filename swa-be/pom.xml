@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <java.version>1.8</java.version>
+        <javaee.version>7.0</javaee.version>
+
         <org.mapstruct.version>1.0.0.Final</org.mapstruct.version>
 
         <slf4j.version>1.7.21</slf4j.version>
@@ -19,7 +22,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
+            <version>${javaee.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -85,8 +88,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
              <plugin>
