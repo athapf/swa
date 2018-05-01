@@ -56,4 +56,56 @@
             <artifactId>dbunit</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.24.0</version>
+                <executions>
+                    <execution>
+                        <id>prepare-it-database</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <alias>swa-pg</alias>
+                                    <name>postgres:alpine</name>
+                                    <run>
+                                        <hostname>swa-pg</hostname>
+                                        <ports>
+                                            <port>5432:5432</port>
+                                        </ports>
+                                        <env>
+                                            <POSTGRES_PASSWORD>swa</POSTGRES_PASSWORD>
+                                            <POSTGRES_USER>swa</POSTGRES_USER>
+                                        </env>
+                                        <wait>
+                                            <log>database system is ready to accept connections</log>
+                                            <time>10000</time>
+                                        </wait>
+                                        <log>
+                                            <prefix>DB</prefix>
+                                            <color>yellow</color>
+                                        </log>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>remove-it-database</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
