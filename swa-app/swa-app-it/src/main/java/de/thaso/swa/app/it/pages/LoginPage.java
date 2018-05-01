@@ -1,0 +1,57 @@
+package de.thaso.swa.app.it.pages;
+
+import de.thaso.swa.app.it.components.ButtonCO;
+import de.thaso.swa.app.it.components.InputCO;
+import de.thaso.swa.app.it.components.LabelCO;
+import de.thaso.swa.app.it.components.LinkCO;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+
+/**
+ * LoginPage
+ *
+ * @author thaler
+ * @since 27.02.17
+ */
+public class LoginPage extends StandardPage {
+
+    @FindBy(how = How.CSS, css = "*[id$='nameInput']")
+    private InputCO nameInput;
+
+    @FindBy(how = How.CSS, css = "*[id$='passwordInput']")
+    private InputCO passwordInput;
+
+    @FindBy(how = How.CSS, css = "*[id$='loginButton']")
+    private ButtonCO loginButton;
+
+    @FindBy(how = How.CSS, css = "*[id$='registerLink']")
+    private LinkCO registerLink;
+
+    @FindBy(how = How.CSS, css = "*[id$='message']")
+    private LabelCO messageLabel;
+
+    @Override
+    public String getPageId() {
+        return "loginPage";
+    }
+
+    public InputCO getNameInput() {
+        return nameInput;
+    }
+
+    public InputCO getPasswordInput() {
+        return passwordInput;
+    }
+
+    public ButtonCO getLoginButton() {
+        return loginButton;
+    }
+
+    public LinkCO getRegisterLink() {
+        return registerLink;
+    }
+
+    public LabelCO getMessageLabel() {
+        return messageLabel;
+    }
+}
