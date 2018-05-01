@@ -4,6 +4,7 @@ import de.thaso.swa.app.it.base.SeleniumTestBase;
 import de.thaso.swa.app.it.pages.LoginPage;
 import de.thaso.swa.app.it.pages.OverviewPage;
 import de.thaso.swa.app.it.pages.RegisterPage;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,6 +16,7 @@ import static org.hamcrest.core.Is.is;
  * @author thaler
  * @since 27.02.17
  */
+@Ignore
 public class LoginIT extends SeleniumTestBase {
 
     private static final String EMPTY = "";

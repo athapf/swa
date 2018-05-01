@@ -1,7 +1,7 @@
 package de.thaso.swa.app.it.base;
 
-import de.thaso.swa.db.schema.PropertiesManager;
-import de.thaso.swa.app.it.glassfish.GlassfishEmbeddedServer;
+//import de.thaso.swa.app.it.glassfish.GlassfishEmbeddedServer;
+import de.thaso.swa.app.it.utils.PropertiesManager;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -30,7 +30,7 @@ public class SeleniumTestBase extends DbUnitTestBase {
 
     private static Properties properties;
 
-    private static ApplicationServerBase appServer = new GlassfishEmbeddedServer();
+    //private static ApplicationServerBase appServer = new GlassfishEmbeddedServer();
     private FirefoxDriver driver;
 
     public static Properties readProperties() {
@@ -46,12 +46,12 @@ public class SeleniumTestBase extends DbUnitTestBase {
 
     @BeforeClass
     public static void initEmbeddedServer() throws Exception {
-        appServer.startEmbeddedServer();
+        //appServer.startEmbeddedServer();
     }
 
     @AfterClass
     public static void closeEmbeddedServer() throws Exception {
-        appServer.stopEmbeddedServer();
+        //appServer.stopEmbeddedServer();
     }
 
     @Rule
@@ -80,8 +80,8 @@ public class SeleniumTestBase extends DbUnitTestBase {
 
     public <T extends BasePO> T startBrowser(final String pageUrl, Class<T> pageClass) {
         final StringBuilder builder = new StringBuilder();
-        //builder.append(createAppUrl()).append("/");
-        builder.append(appServer.getApplicationUrl()).append("/");
+        builder.append(createAppUrl()).append("/");
+        //builder.append(appServer.getApplicationUrl()).append("/");
         if(StringUtils.isNotBlank(pageUrl)) {
             builder.append(pageUrl);
             if(!StringUtils.endsWith(pageUrl, ".xhtml")) {
@@ -108,6 +108,7 @@ public class SeleniumTestBase extends DbUnitTestBase {
     }
 
     public String getAppUrl() {
-        return appServer.getApplicationUrl();
+        return createAppUrl();
+        //return appServer.getApplicationUrl();
     }
 }

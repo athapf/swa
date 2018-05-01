@@ -1,11 +1,10 @@
 package de.thaso.swa.app.it.base;
 
-import de.thaso.swa.db.schema.DatabaseManager;
-import de.thaso.swa.db.schema.PropertiesManager;
+import de.thaso.swa.app.it.utils.DatabaseManager;
+import de.thaso.swa.app.it.utils.PropertiesManager;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
