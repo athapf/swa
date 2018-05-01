@@ -51,7 +51,7 @@
                                             <POSTGRES_USER>swa</POSTGRES_USER>
                                         </env>
                                         <wait>
-                                            <log>database system is ready to accept connections</log>
+                                            <log>PostgreSQL init process complete; ready for start up</log>
                                             <time>10000</time>
                                         </wait>
                                         <log>
