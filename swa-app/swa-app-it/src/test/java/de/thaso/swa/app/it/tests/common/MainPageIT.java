@@ -2,6 +2,11 @@ package de.thaso.swa.app.it.tests.common;
 
 import de.thaso.swa.app.it.base.SeleniumTestBase;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 
 /**
  * OverviewPageTest
@@ -15,5 +20,8 @@ public class MainPageIT extends SeleniumTestBase {
     public void testMainPage() {
         updateDatabase();
         getDriver().get(getAppUrl() + "/main.xhtml");
+
+        final WebElement mainTitle = getDriver().findElementByCssSelector("*[id$='swa-main-title']");
+        assertThat(mainTitle.getText(),is("Sample Web Application"));
     }
 }
