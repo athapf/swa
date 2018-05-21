@@ -9,4 +9,5 @@ tmp/
 *.db
 db-dump/
 
-db2jcc*
+**/lib/oracle/
+**/lib/db2/
