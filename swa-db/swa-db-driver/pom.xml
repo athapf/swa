@@ -17,6 +17,7 @@
     <modules>
         <module>swa-db-driver-postgres</module>
         <module>swa-db-driver-h2db</module>
+        <module>swa-db-driver-oracle</module>
         <!--<module>swa-db-driver-db2</module>-->
     </modules>
 </project>

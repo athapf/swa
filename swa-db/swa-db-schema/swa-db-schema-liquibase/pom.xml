@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>swa.db.schema</groupId>
+        <artifactId>swa-db-schema</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <groupId>swa.db.schema</groupId>
+    <artifactId>swa-db-schema-liquibase</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>${artifactId}</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>swa.db.driver</groupId>
+            <artifactId>swa-db-driver-oracle</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.24.0</version>
+                <executions>
+                    <execution>
+                        <id>prepare-it-database</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <alias>swa-data</alias>
+                                    <name>swa-ora:empty</name>
+                                    <run>
+                                        <hostname>swa-data</hostname>
+                                        <wait>
+                                            <time>1000</time>
+                                        </wait>
+                                        <log>
+                                            <prefix>BB:</prefix>
+                                            <color>red</color>
+                                        </log>
+                                    </run>
+                                </image>
+                                <image>
+                                    <alias>swa-ora</alias>
+                                    <name>oracle/database:11.2.0.2-xe</name>
+                                    <run>
+                                        <hostname>swa-ora</hostname>
+                                        <ports>
+                                            <port>1521:1521</port>
+                                        </ports>
+                                       <volumes>
+                                            <from>
+                                                <image>swa-data</image>
+                                            </from>
+                                        </volumes>
+                                        <shmSize>1073741824</shmSize>
+                                        <wait>
+                                            <log>DATABASE IS READY TO USE!</log>
+                                            <time>60000</time>
+                                        </wait>
+                                        <log>
+                                            <prefix>DB:</prefix>
+                                            <color>yellow</color>
+                                        </log>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>remove-it-database</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <configuration>
+                            <removeVolumes>true</removeVolumes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

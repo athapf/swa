@@ -26,5 +26,6 @@
     <modules>
         <module>swa-db-schema-doc</module>
         <module>swa-db-schema-flyway</module>
+        <module>swa-db-schema-liquibase</module>
     </modules>
 </project>

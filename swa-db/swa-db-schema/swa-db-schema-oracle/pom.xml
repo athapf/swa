@@ -20,6 +20,11 @@
     <name>swa-db-schema-oracle</name>
 
     <dependencies>
+        <dependency>
+            <groupId>swa.db.schema</groupId>
+            <artifactId>swa-db-schema-liquibase</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
