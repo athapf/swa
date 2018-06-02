@@ -2,5 +2,36 @@
 
 Ermitteln der wsdl-Datei:
 
-  mvn clean install tomcat7:run -f fum-web
-  curl -o fum-client/src/main/resources/fumWebService.wsdl http://localhost:8090/fum/services/FumWS?wsdl
+  mvn clean install docker:start -f fum-service
+  curl -o fum-client/src/main/resources/fumWebService.wsdl http://localhost:8092/fum/services/FumWS?wsdl
+  mvn docker:stop -f fum-service
+
+== Client-Services
+
+  findLoginUser(name or alias)
+  -> sessionHandle
+
+  authenticateUser(session, password(Hash))
+  -> new sessionHandle
+
+  removeAlias(session, alias)
+
+  addAlias(session)
+
+  loadUserData(session)
+  -> UserData
+
+  changePassword(session, newPassword)
+
+== Admin-Services
+
+  createLoginUser(session, UserData)
+
+
+  dropLoginUser(session, user)
+
+
+  updateLoginUser(session, UserData)
+
+
+  unlockLoginUser(session, user)

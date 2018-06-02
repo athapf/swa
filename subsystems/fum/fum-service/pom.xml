@@ -13,10 +13,10 @@
     <packaging>war</packaging>
 
     <groupId>fum</groupId>
-    <artifactId>fum-web</artifactId>
+    <artifactId>fum-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>fum</name>
+    <name>${groupId}</name>
 
     <dependencies>
         <dependency>
@@ -110,17 +110,15 @@
                                         <volume>${project.build.directory}/${build.finalName}.war:/usr/local/tomcat/webapps/${build.finalName}.war</volume>
                                     </bind>
                                 </volumes>
-<!--
                                 <ports>
-                                    <port>8090:8080</port>
+                                    <port>8092:8080</port>
                                 </ports>
--->
                                 <wait>
                                     <log>start Server startup in</log>
                                     <time>5000</time>
                                 </wait>
                                 <log>
-                                    <prefix>WS</prefix>
+                                    <prefix>WS.</prefix>
                                     <color>red</color>
                                 </log>
                             </run>
@@ -143,7 +141,7 @@
                                     <port>8443:443</port>
                                 </ports>
                                 <log>
-                                    <prefix>NG</prefix>
+                                    <prefix>NG.</prefix>
                                     <color>yellow</color>
                                 </log>
                             </run>

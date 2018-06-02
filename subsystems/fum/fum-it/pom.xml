@@ -46,7 +46,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>fum</groupId>
-                                    <artifactId>fum-web</artifactId>
+                                    <artifactId>fum-service</artifactId>
                                     <version>1.0-SNAPSHOT</version>
                                     <type>war</type>
                                 </artifactItem>
@@ -92,7 +92,7 @@
                                             <port>65402:8080</port>
                                         </ports>
                                         <log>
-                                            <prefix>WS</prefix>
+                                            <prefix>WS-</prefix>
                                             <color>red</color>
                                         </log>
                                     </run>
@@ -118,7 +118,7 @@
                                             <port>65401:443</port>
                                         </ports>
                                         <log>
-                                            <prefix>NG</prefix>
+                                            <prefix>NG-</prefix>
                                             <color>yellow</color>
                                         </log>
                                     </run>

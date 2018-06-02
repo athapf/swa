@@ -19,7 +19,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>fum-web</module>
+        <module>fum-service</module>
         <module>fum-client</module>
         <module>fum-it</module>
     </modules>

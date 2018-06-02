@@ -5,7 +5,7 @@
     <dependencySets>
         <dependencySet>
             <includes>
-                <include>fum:fum-web</include>
+                <include>fum:fum-service</include>
             </includes>
             <outputDirectory>/tmp/</outputDirectory>
             <useProjectArtifact>false</useProjectArtifact>
