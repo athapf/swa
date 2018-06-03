@@ -1,0 +1,7 @@
+<ironjacamar>
+    <connection-definitions>
+        <connection-definition
+                class-name="de.thaso.fum.web.ra.impl.FumManagedConnectionFactory"
+                jndi-name="java:/eis/FumConnectionFactory"/>
+    </connection-definitions>
+</ironjacamar>

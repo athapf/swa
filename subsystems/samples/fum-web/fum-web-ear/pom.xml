@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>fum.web</groupId>
+        <artifactId>fum-web</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>ear</packaging>
+
+    <groupId>fum.web</groupId>
+    <artifactId>fum-web-ear</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>${artifactId}</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>fum.web</groupId>
+            <artifactId>fum-web-war</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>fum.web</groupId>
+            <artifactId>fum-web-rar</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>rar</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.name}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <version>6</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <fileNameMapping>no-version</fileNameMapping>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                    <modules>
+                        <webModule>
+                            <groupId>fum.web</groupId>
+                            <artifactId>fum-web-war</artifactId>
+                            <contextRoot>/fum-web</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.24.0</version>
+                <executions>
+                    <execution>
+                        <id>docker:build</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <removeVolumes>true</removeVolumes>
+                            <images>
+                                <image>
+                                    <alias>fum-web</alias>
+                                    <name>fum-web</name>
+                                    <build>
+                                        <from>busybox</from>
+                                        <assembly>
+                                            <descriptor>assembly.xml</descriptor>
+                                            <basedir>/</basedir>
+                                        </assembly>
+                                        <runCmds>
+                                            <shell>chown -R 1000.1000 /opt/jboss/wildfly/standalone/deployments</shell>
+                                        </runCmds>
+                                        <volumes>
+                                            <volume>/opt/jboss/wildfly/standalone/deployments</volume>
+                                        </volumes>
+                                        <cmd>
+                                            <shell>echo "fum web container"</shell>
+                                        </cmd>
+                                    </build>
+                                </image>
+                                <image>
+                                    <alias>fum-wf</alias>
+                                    <name>wildfly</name>
+                                    <build>
+                                        <from>jboss/wildfly:10.1.0.Final</from>
+                                        <runCmds>
+                                            <shell>/opt/jboss/wildfly/bin/add-user.sh admin admin --silent</shell>
+                                        </runCmds>
+                                        <entryPoint>
+                                            <exec>
+                                                <arg>/opt/jboss/wildfly/bin/standalone.sh</arg>
+                                            </exec>
+                                        </entryPoint>
+                                        <cmd>
+                                            <exec>
+                                                <arg>-b</arg>
+                                                <arg>0.0.0.0</arg>
+                                                <arg>-bmanagement</arg>
+                                                <arg>0.0.0.0</arg>
+                                            </exec>
+                                        </cmd>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <removeVolumes>true</removeVolumes>
+                    <images>
+                        <image>
+                            <alias>fum-web</alias>
+                            <name>fum-web</name>
+                            <run>
+                                <hostname>fum-web</hostname>
+                                <cmd>
+                                    <shell>chown -R 1000.1000 /opt/jboss/wildfly/standalone/deployments</shell>
+                                </cmd>
+                                <wait>
+                                    <time>1000</time>
+                                </wait>
+                                <log>
+                                    <prefix>FW</prefix>
+                                    <color>yellow</color>
+                                </log>
+                            </run>
+                        </image>
+                        <image>
+                            <alias>fum-wf</alias>
+                            <name>wildfly</name>
+                            <run>
+                                <hostname>fum-wf</hostname>
+                                <volumes>
+                                    <from>
+                                        <image>fum-web</image>
+                                    </from>
+                                </volumes>
+                                <ports>
+                                    <port>8065:8080</port>
+                                    <port>9965:9990</port>
+                                </ports>
+                                <wait>
+                                    <log>WildFly Full 10.1.0.Final .* started in</log>
+                                    <time>10000</time>
+                                </wait>
+                                <log>
+                                    <prefix>WF</prefix>
+                                    <color>cyan</color>
+                                </log>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
+</project>
